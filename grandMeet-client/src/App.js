@@ -5,6 +5,7 @@ import Home from './pages/Home.jsx';
 import Navbar from './components/navbar/Navbar';
 import Signup from './components/auth/Signup.jsx';
 import Profile from './pages/Profile.jsx';
+import User from './pages/User.jsx';
 import AuthService from './components/auth/auth-service.jsx';
 import Login from './components/auth/Login.jsx';
 
@@ -42,7 +43,8 @@ class App extends Component {
     if(this.state.loggedInUser){
       return (
         <div className="App">
-          <Profile userInSession={this.state.loggedInUser} />
+          <User userInSession={this.state.loggedInUser} />
+          <Route exact path='/profile' render = {()=> <Profile userInSession={this.state.loggedInUser} getUser={this.getTheUser}/>}/>
         </div>
       )
     } else {
