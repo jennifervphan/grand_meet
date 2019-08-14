@@ -11,7 +11,6 @@ class Navbar extends Component {
   }
 
   componentDidMount(nextProps) {
-    console.log(this.props);
     this.setState({...this.state, loggedInUser: this.props.userInSession });
   }
   // // nextProps["userInSession"]
@@ -27,9 +26,9 @@ class Navbar extends Component {
     if(this.state.loggedInUser){
       return(
         <nav className="Navbar">
-          <Link to="/profile" style={{ textDecoration: 'none', color:"darkgrey" }}>Profile</Link>
-          <Link to="/nearby" style={{ textDecoration: 'none', color:"darkgrey" }}>Nearby</Link>
-          <Link to="/messages" style={{ textDecoration: 'none', color:"darkgrey" }}><i class="fas fa-comments fa-2x"></i></Link>
+          <Link to="/profile" style={{ textDecoration: 'none', color:"grey" }}>Profile</Link>
+          <Link to="/nearby" style={{ textDecoration: 'none', color:"grey" }}>Nearby</Link>
+          <Link to="/messages" style={{ textDecoration: 'none', color:"grey" }}><i className="fas fa-comments fa-2x"></i></Link>
         </nav>
       )
     } else {

@@ -4,8 +4,14 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     username: String,
     password: String,
+    about: {
+        type: String,
+        default: ""
+    },
     profilePicUrl: String,
-    profilePicName: String
+    profilePicName: String,
+    longitude: Number,
+    latitude: Number
 }, {
     timestamps: true
 });

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import MainLayout from '../components/layout/MainLayout';
 import AuthService from '../components/auth/auth-service';
+import './Profile.css';
 
 export default class Profile extends Component {
     constructor(props){
@@ -11,7 +12,6 @@ export default class Profile extends Component {
       }
     
       componentDidMount(nextProps) {
-        console.log(this.props);
         this.setState({...this.state, loggedInUser: this.props.userInSession });
       }
       // nextProps["userInSession"]
@@ -24,14 +24,18 @@ export default class Profile extends Component {
       }
 
     render() {
-        console.log(this.props.userInSession);
         return (
           <MainLayout {...this.props}>
-            {/* <div {...this.props}>  */}
-                Welcome {this.props.userInSession.username}!
+            <div className="ProfilePage">
+                <div className="profilePic" style={{  backgroundImage: `url(${this.props.userInSession.profilePicUrl})`,}}></div>
+                <Link style={{ color: 'grey', textDecoration:"none" }} to="/editProfile"><div className="editIcon"></div></Link>
+                <h3>Welcome {this.props.userInSession.username}!</h3>
+                <p>About: </p>
+                <p>{this.props.userInSession.about}</p>
                 <Link to='/'>
                 <button onClick={() => this.logoutUser()}>Logout</button>
-              </Link>
+                </Link>
+            </div>
           </MainLayout>
         )
     }

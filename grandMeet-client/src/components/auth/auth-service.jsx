@@ -12,7 +12,7 @@ class AuthService {
   signup = (form) => {
     return axios({
       method:"POST",
-      baseURL: 'http://localhost:5000/api/signup',
+      baseURL: `http://localhost:5000/api/signup`,
       withCredentials: true,
       data:form
     })
@@ -25,9 +25,17 @@ class AuthService {
     .then(response => response.data)
   }
   
-  login = (username, password) => {
-    return this.service.post('/login', {username, password})
+  login = 
+  // (username,password) => {
+  //   return axios({
+  //     method:"POST",
+  //     baseURL: `http://localhost:5000/api/login`,
+  //     withCredentials: true,
+  //   })
+  (username, password, coordinates) => {
+    return this.service.post('/login', {username, password, coordinates})
     .then(response => response.data)
+      // <Redirect to="/profile"/>)
   }
   
   logout = () => {

@@ -1,0 +1,40 @@
+.ProfilePage {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.ProfilePage h3,
+p {
+    font-family: 'Rubik', sans-serif;
+    color: rgb(22, 22, 22);
+}
+
+.profilePic {
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin-bottom: 30px;
+}
+
+.editIcon::before {
+    position: absolute;
+    float: right;
+    margin-left: 70px;
+    margin-top: -80px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: red;
+    font-family: "Font Awesome 5 Free";
+    color: white;
+    text-align: center;
+    font-weight: 900;
+    font-size: 25px;
+    content: "\f304";
+}
