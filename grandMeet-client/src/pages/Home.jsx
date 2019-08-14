@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import MainLayout from '../components/layout/MainLayout';
 import {Link} from 'react-router-dom';
+import "./Home.css";
 
 export default class Home extends Component {
     render() {
         return (
+            <div className="Homepage">
             <MainLayout>
-                <h1>Welcome</h1>
+                <div className="welcomeInfo">
+                <h1>talk.share.meet.</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    Ut enim ad minim veniam, quis nostrud exercitation. 
                 </p>
-                <Link to='/signup' style={{ textDecoration: 'none' }}><button>Sign up</button></Link>
+                <Link to='/signup' style={{ textDecoration: 'none' }}><button className="registerBtnHome">Register</button></Link>
+                </div>
             </MainLayout>
+            </div>
         )
     }
 }

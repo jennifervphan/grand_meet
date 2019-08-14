@@ -39,8 +39,12 @@ class Signup extends Component {
 
   render(){
     return(
+      <div className="loginPage">
       <MainLayout>
-        <form ref={this.formRef} onSubmit={this.handleFormSubmit}>
+      <Link to="/" style={{ textDecoration: 'none', color:"white" }}><i className="fas fa-times-circle fa-2x"></i></Link>
+        <div className="signupForm">
+        <h3>Register</h3>
+        <form class="loginInput" ref={this.formRef} onSubmit={this.handleFormSubmit}>
           <label>Username:</label>
           <input type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
           
@@ -50,13 +54,15 @@ class Signup extends Component {
           <label>Profile Picture:</label>
           <input type="file" name="picture" onChange={this.uploadPic}/>
 
-          <input type="submit" value="Signup"/>
+          <button className="submitBtn" type="submit">Register</button>
         </form>
   
         <p>Already have account? 
-            <Link to={"/login"}> Login</Link>
+            <Link to={"/login"} style={{ color: 'rgb(5, 5, 5)', textDecoration:"underline" }}> Login</Link>
         </p>
+        </div>
       </MainLayout>
+      </div>
     )
   }
 }

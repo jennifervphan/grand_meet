@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import './Navbar.css';
 // import AuthService from '../auth/auth-service';
 
 class Navbar extends Component {
@@ -25,16 +26,17 @@ class Navbar extends Component {
   render(){
     if(this.state.loggedInUser){
       return(
-        <nav className="nav-style">
-          <Link to="/profile">Profile</Link>
-          <Link to="/nearby">Nearby</Link>
-          <Link to="/messages">Messages</Link>
+        <nav className="Navbar">
+          <Link to="/profile" style={{ textDecoration: 'none', color:"darkgrey" }}>Profile</Link>
+          <Link to="/nearby" style={{ textDecoration: 'none', color:"darkgrey" }}>Nearby</Link>
+          <Link to="/messages" style={{ textDecoration: 'none', color:"darkgrey" }}><i class="fas fa-comments fa-2x"></i></Link>
         </nav>
       )
     } else {
       return ( 
-        <nav className="nav-style">
-            <Link to='/login' style={{ textDecoration: 'none' }}>Login</Link>
+        <nav className="Navbar">
+            <Link to="/" style={{textDecoration:"none", color: "white"}}><h3>grandMeet</h3></Link>
+            <Link to='/login' style={{ textDecoration: 'none', color:"white" }}><h3>Login</h3></Link>
         </nav>
       )
     }

@@ -26,12 +26,13 @@ export default class Profile extends Component {
     render() {
         console.log(this.props.userInSession);
         return (
-            <div {...this.props}> 
+          <MainLayout {...this.props}>
+            {/* <div {...this.props}>  */}
                 Welcome {this.props.userInSession.username}!
                 <Link to='/'>
                 <button onClick={() => this.logoutUser()}>Logout</button>
               </Link>
-            </div>
+          </MainLayout>
         )
     }
 }

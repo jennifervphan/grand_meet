@@ -1,0 +1,37 @@
+.Homepage {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    background: url('/img/raymond-tan-yiY6CsbFXIE-unsplash.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-color: rgb(44, 5, 5);
+    opacity: 0.7;
+}
+
+.Homepage.welcomeInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.welcomeInfo h1,
+p {
+    color: white;
+}
+
+.welcomeInfo h1 {
+    font-family: 'Beth Ellen', cursive;
+    font-size: 150px;
+}
+
+.welcomeInfo p {
+    font-size: 30px;
+    padding: 10px 100px;
+}
+
+.registerBtnHome {
+    width: 150px;
+    border-radius: 30px;
+}
