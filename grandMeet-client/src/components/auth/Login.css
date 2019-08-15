@@ -77,3 +77,16 @@
 .signupForm p {
     color: rgb(22, 22, 22);
 }
+
+.loginForm a {
+    color: rgb(22, 22, 22);
+    text-decoration: underline;
+}
+
+.loginForm p {
+    color: rgb(22, 22, 22) !important;
+}
+
+.signupForm p {
+    color: rgb(22, 22, 22) !important;
+}

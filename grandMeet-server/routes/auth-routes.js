@@ -57,8 +57,8 @@ authRoutes.post('/signup', uploadCloud.single('picture'), (req, res, next) => {
                 }
                 // Send the user's information to the frontend
                 // We can use also: res.status(200).json(req.user);
-                let { username, _id, profilePicUrl, about } = aNewUser;
-                res.status(200).json({ username, _id, profilePicUrl, about });
+                let { username, _id, profilePicUrl, about, longitude, latitude } = aNewUser;
+                res.status(200).json({ username, _id, profilePicUrl, about, longitude, latitude });
                 // res.status(200).json(aNewUser);
             });
         });
@@ -90,8 +90,8 @@ authRoutes.post('/login', (req, res, next) => {
                     latitude: req.body.coordinates.latitude
                 }, { new: true })
                 .then(user => {
-                    let { username, _id, profilePicUrl, about } = user;
-                    res.status(200).json({ username, _id, profilePicUrl, about });
+                    let { username, _id, profilePicUrl, about, longitude, latitude } = user;
+                    res.status(200).json({ username, _id, profilePicUrl, about, longitude, latitude });
                 })
                 // We are now logged in (that's why we can also send req.user)
 

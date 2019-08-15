@@ -44,7 +44,7 @@ class Signup extends Component {
       <Link to="/" style={{ textDecoration: 'none', color:"white" }}><i className="fas fa-times-circle fa-2x"></i></Link>
         <div className="signupForm">
         <h3>Register</h3>
-        <form class="loginInput" ref={this.formRef} onSubmit={this.handleFormSubmit}>
+        <form className="loginInput" ref={this.formRef} onSubmit={this.handleFormSubmit}>
           <label>Username:</label>
           <input type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
           

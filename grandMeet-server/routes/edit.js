@@ -8,10 +8,8 @@ router.post('/edit', uploadCloud.single('picture'), (req, res, next) => {
     const username = req.body.username;
     const about = req.body.about;
     const user = req.body.user;
-    console.log(req.session.user);
     User.findOne({ _id: user })
         .then(user => {
-            console.log(user);
             let userId = user._id;
             let updateUser = {
                 username: username,

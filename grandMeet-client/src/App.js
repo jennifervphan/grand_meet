@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import {Route, Redirect} from 'react-router-dom';
 import Home from './pages/Home.jsx';
-import Navbar from './components/navbar/Navbar';
 import Signup from './components/auth/Signup.jsx';
 import Profile from './pages/Profile.jsx';
 import EditProfile from './pages/EditProfile.jsx';

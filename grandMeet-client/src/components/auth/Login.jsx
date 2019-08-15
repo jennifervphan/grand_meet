@@ -8,19 +8,14 @@ import {geolocated} from 'react-geolocated';
 class Login extends Component {
   constructor(props){
     super(props);
-    this.formRef = React.createRef();
     this.state = { username: '', password: ''};
     this.service = new AuthService();
   }
 
   handleFormSubmit = (event) => {
-    debugger
     event.preventDefault();
     const username= this.state.username;
     const password=this.state.password;
-    // const form = new FormData(this.formRef.current)
-    // form.append("longitude", this.props.coords.longitude);
-    // form.append("latitude", this.props.coords.latitude);
     this.service.login(username,password, {longitude: this.props.coords.longitude, latitude: this.props.coords.latitude})
     .then( response => {
         this.setState({ username: "", password: ""});
@@ -41,7 +36,7 @@ class Login extends Component {
       <Link to="/" style={{ textDecoration: 'none', color:"white" }}><i className="fas fa-times-circle fa-2x"></i></Link>
         <div className="loginForm">
         <h3>Log in</h3>
-        <form class="loginInput" ref={this.formRef} onSubmit={this.handleFormSubmit}>
+        <form className="loginInput" onSubmit={this.handleFormSubmit}>
           <label>Username:</label>
           <input type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
 

@@ -11,7 +11,11 @@ const userSchema = new Schema({
     profilePicUrl: String,
     profilePicName: String,
     longitude: Number,
-    latitude: Number
+    latitude: Number,
+    distance: {
+        type: Number,
+        default: 0
+    }
 }, {
     timestamps: true
 });

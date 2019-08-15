@@ -2,13 +2,13 @@
     width: 100vw;
     height: 100vh;
     margin: 0;
+    background-color: rgb(44, 5, 5);
+    opacity: 0.7;
     background: url('/img/raymond-tan-yiY6CsbFXIE-unsplash.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    background-color: rgb(44, 5, 5);
-    opacity: 0.7;
 }
 
 .Homepage.welcomeInfo {
@@ -18,7 +18,7 @@
 
 .welcomeInfo h1,
 p {
-    color: white;
+    color: white !important;
 }
 
 .welcomeInfo h1 {
@@ -27,8 +27,8 @@ p {
 }
 
 .welcomeInfo p {
-    font-size: 30px;
-    padding: 10px 100px;
+    font-size: 35px;
+    padding: 10px 150px;
 }
 
 .registerBtnHome {
