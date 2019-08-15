@@ -28,7 +28,7 @@ class Navbar extends Component {
         <nav className="Navbar">
           <Link to="/profile" style={{ textDecoration: 'none', color:"grey" }}>Profile</Link>
           <Link to="/nearby" style={{ textDecoration: 'none', color:"grey" }}>Nearby</Link>
-          <Link to="/messages" style={{ textDecoration: 'none', color:"grey" }}><i className="fas fa-comments fa-2x"></i></Link>
+          <Link to="/chat" style={{ textDecoration: 'none', color:"grey" }}><i className="fas fa-comments fa-2x"></i></Link>
         </nav>
       )
     } else {

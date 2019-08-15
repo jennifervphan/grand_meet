@@ -8,6 +8,7 @@
     "dev-windows": "nodemon ./bin/www"
   },
   "dependencies": {
+    "@pusher/chatkit-server": "^2.1.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "cloudinary": "^1.14.0",
@@ -24,6 +25,7 @@
     "node-sass-middleware": "^0.11.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "pusher-chatkit-server": "^0.12.0",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {

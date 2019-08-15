@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {geolocated} from 'react-geolocated';
 import axios from 'axios';
 import MainLayout from '../components/layout/MainLayout';
+import {Link} from 'react-router-dom';
+import './Nearby.css';
 
 class Nearby extends Component {
     _isMounted = false
@@ -16,28 +18,25 @@ class Nearby extends Component {
     }
 
     calculateDistance (lat1, lon1, lat2, lon2){
-        var radlat1 = Math.PI * lat1/180
-        var radlat2 = Math.PI * lat2/180
-        var radlon1 = Math.PI * lon1/180
-        var radlon2 = Math.PI * lon2/180
-        var theta = lon1-lon2
-        var radtheta = Math.PI * theta/180
-        var dist = Math.sin(radlon1) * Math.sin(radlon2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-        dist = Math.acos(dist)
-        dist = dist * 180/Math.PI
-        debugger
-        dist = Math.floor(dist * 60 * 1.1515* 1.609344); //for distance in kilometer
-        return dist
+        lat1 =  Math.PI * lat1/180
+        lat2 = Math.PI * lat2/180
+        lon1 = Math.PI * lon1/180
+        lon2 = Math.PI * lon2/180
+        var R = 6371; // km
+        var x = (lon2 - lon1) * Math.cos((lat1 + lat2) / 2);
+        var y = (lat2 - lat1);
+        var d = Math.floor(Math.sqrt(x * x + y * y) * R);
+        return d;
       }
 
     componentDidMount() {
         this._isMounted = true;
-        axios.get(`http://localhost:5000/api/nearby`, {withCredentials:true})
+        axios.get(`${process.env.REACT_APP_API}/nearby`, {withCredentials:true})
         .then(responseFromApi => {
             if (this._isMounted) {
                 let users= this.calculateUserDist(responseFromApi.data);
-                    console.log(users);
                     this.setState({sortedUsers:users})
+                    this.props.history.push('/nearby')
         }
     })
     }
@@ -65,19 +64,27 @@ class Nearby extends Component {
         const users = this.state.sortedUsers;
         let eachUser=users.map(user=>{
             return(
-                <div key={user.username}>
-                    <img src={user.profilePicUrl} alt=""></img>
-                    <h4>{user.username}</h4>
-                    <p>Distance from you: {user.distance}km</p>
+                <div className="eachUser" key={user.username}>
+                    <Link to={{ pathname: `/nearby/${user._id}`,
+                                nearbyUserProps: {user: user}}}>
+
+                        <div className="avaPic" style={{backgroundImage:`url(${user.profilePicUrl})` }}>
+                            {/* <i className="fas fa-info-circle fa-2x"></i> */}
+                        <div>
+                            <h4>{user.username}</h4>
+                            <p><i className="fas fa-map-marker-alt"></i> {user.distance}km</p>
+                        </div>
+                        </div>
+                    </Link>
                 </div>
             )
         })
         return (
-            <div className="NearbyPage">
             <MainLayout {...this.props}>
+            <div className="NearbyPage">
               {eachUser}  
-            </MainLayout>
             </div>
+            </MainLayout>
         )}
         return(
             <h1>No nearby Users</h1>

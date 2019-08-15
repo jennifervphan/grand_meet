@@ -27,10 +27,10 @@ export default class Profile extends Component {
         return (
           <MainLayout {...this.props}>
             <div className="ProfilePage">
-                <div className="profilePic" style={{  backgroundImage: `url(${this.props.userInSession.profilePicUrl})`,}}></div>
+                <div className="profilePic" style={{  backgroundImage: `url(${this.props.userInSession.profilePicUrl})`}}></div>
                 <Link style={{ color: 'grey', textDecoration:"none" }} to="/editProfile"><div className="editIcon"></div></Link>
                 <h3>Welcome {this.props.userInSession.username}!</h3>
-                <p>About: </p>
+                <p>About </p>
                 <p>{this.props.userInSession.about}</p>
                 <Link to='/'>
                 <button onClick={() => this.logoutUser()}>Logout</button>

@@ -19,4 +19,15 @@ router.get('/nearby', (req, res, next) => {
         })
 });
 
+router.get('/nearby/:id', (req, res, next) => {
+    let userId = req.params.id;
+    User.findOne({ _id: userId })
+        .then(user => {
+            res.status(200).json(user);
+        })
+        .catch(err => {
+            console.log(err)
+        })
+})
+
 module.exports = router;

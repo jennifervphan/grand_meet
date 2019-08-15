@@ -1,3 +1,38 @@
 .NearbyPage {
     color: grey;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.eachUser {
+    width: 30%;
+    margin: 0 20px 20px 20px;
+}
+
+.avaPic {
+    width: 300px;
+    height: 300px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.avaPic div {
+    background-color: white;
+    opacity: 0.8;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.fa-info-circle {
+    position: absolute;
+    float: right;
+    margin-left: 116px;
+    color: red;
 }

@@ -9,18 +9,18 @@ const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
 const cors = require('cors');
+const Chatkit = require('pusher-chatkit-server');
 
+const chatkit = new Chatkit.default({
+    instanceLocator: process.env.chatkit_instance_locator,
+    key: process.env.chatkit_secretkey
+})
 
-// WHEN INTRODUCING USERS DO THIS:
-// INSTALL THESE DEPENDENCIES: passport-local, passport, bcryptjs, express-session
-// AND UN-COMMENT OUT FOLLOWING LINES:
 
 const session = require('express-session');
 const passport = require('passport');
 
 require('./configs/passport');
-
-// IF YOU STILL DIDN'T, GO TO 'configs/passport.js' AND UN-COMMENT OUT THE WHOLE FILE
 
 mongoose
     .connect('mongodb://localhost/grandMeet', { useNewUrlParser: true })
@@ -86,6 +86,6 @@ const index = require('./routes/index');
 app.use('/', index);
 app.use('/api', require('./routes/auth-routes'));
 app.use('/api', require('./routes/edit'));
-app.use('/api', require('./routes/neaby'));
+app.use('/api', require('./routes/nearby'));
 
 module.exports = app;

@@ -5,6 +5,14 @@ const bcrypt = require('bcryptjs');
 const multer = require('multer');
 const uploadCloud = require('../configs/cloudinary');
 const User = require('../models/user-model');
+const Chatkit = require('@pusher/chatkit-server');
+
+const chatkit = new Chatkit.default({
+    instanceLocator: "v1:us1:95077b15-c43c-4d68-ae92-7a1f082f91c8",
+    key: "b7bd9cc1-fbd0-43dc-b9d7-6ecfddb236d7:ZVFoqZ7HLsWL6XNhbnugGcNs8xBQZKHkmLwyRP945AA="
+})
+
+
 
 authRoutes.post('/signup', uploadCloud.single('picture'), (req, res, next) => {
     const username = req.body.username;
@@ -55,11 +63,20 @@ authRoutes.post('/signup', uploadCloud.single('picture'), (req, res, next) => {
                     res.status(500).json({ message: 'Login after signup went bad.' });
                     return;
                 }
-                // Send the user's information to the frontend
-                // We can use also: res.status(200).json(req.user);
+                // chatkit creat new user
+
+                chatkit.createUser({
+                        id: aNewUser.username,
+                        name: aNewUser.username
+                    })
+                    .then((user) => {
+                        res.sendStatus(201)
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
                 let { username, _id, profilePicUrl, about, longitude, latitude } = aNewUser;
                 res.status(200).json({ username, _id, profilePicUrl, about, longitude, latitude });
-                // res.status(200).json(aNewUser);
             });
         });
     });
@@ -90,6 +107,23 @@ authRoutes.post('/login', (req, res, next) => {
                     latitude: req.body.coordinates.latitude
                 }, { new: true })
                 .then(user => {
+
+                    chatkit.createUser({
+                            name: user.username,
+                            id: user.username
+                        })
+                        .then((newuser) => {
+                            console.log(newuser)
+                            res.sendStatus(201)
+                        })
+                        .catch((err) => {
+                            if (err.error_type === "servies/chatkit/user_already_exists") {
+                                res.sendStatus(200)
+                            } else {
+                                console.log(err)
+                            }
+                        })
+
                     let { username, _id, profilePicUrl, about, longitude, latitude } = user;
                     res.status(200).json({ username, _id, profilePicUrl, about, longitude, latitude });
                 })
@@ -114,5 +148,15 @@ authRoutes.get('/loggedin', (req, res, next) => {
     }
     res.status(403).json({ message: 'Unauthorized' });
 });
+
+
+// authRoutes.post('/authenticate', (req, res) => {
+//     const authData = chatkit.authenticate({
+//         userId: req.query.user_id
+//     });
+
+//     res.status(authData.status)
+//         .send(authData.body);
+// })
 
 module.exports = authRoutes;
