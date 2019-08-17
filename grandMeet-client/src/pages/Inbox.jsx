@@ -28,7 +28,7 @@ export default class Inbox extends Component {
         return (
             <MainLayout {...this.props} className="Dashboard">
                 <AllRooms rooms={this.state.chatRooms}/>
-                <Route path="/inbox/message" render={(props)=><EachRoom rooms={this.state.chatRooms} {...props}/>}/>
+                <Route path="/inbox/:id" render={(props)=><EachRoom rooms={this.state.chatRooms} {...props}/>}/>
             </MainLayout>
         )
     }

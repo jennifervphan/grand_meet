@@ -24,8 +24,7 @@ export default class AllRooms extends Component {
         let eachRoom= rooms.map(room=>{
             console.log(room)
             return(
-                <Link to="/inbox/message">
-                {/* // {`/inbox/${room.id}`}> */}
+                <Link to={`/inbox/${room.id}`}>
                 {room.name}
                 </Link>
             )
