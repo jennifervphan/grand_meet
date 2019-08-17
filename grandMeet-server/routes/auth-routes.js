@@ -66,7 +66,7 @@ authRoutes.post('/signup', uploadCloud.single('picture'), (req, res, next) => {
                 // chatkit creat new user
 
                 chatkit.createUser({
-                        id: aNewUser.username,
+                        id: aNewUser._id,
                         name: aNewUser.username
                     })
                     .then((user) => {
@@ -107,10 +107,10 @@ authRoutes.post('/login', (req, res, next) => {
                     latitude: req.body.coordinates.latitude
                 }, { new: true })
                 .then(user => {
-
+                    req.session.user = user;
                     chatkit.createUser({
                             name: user.username,
-                            id: user.username
+                            id: user._id
                         })
                         .then((newuser) => {
                             console.log(newuser)
@@ -150,13 +150,14 @@ authRoutes.get('/loggedin', (req, res, next) => {
 });
 
 
-// authRoutes.post('/authenticate', (req, res) => {
-//     const authData = chatkit.authenticate({
-//         userId: req.query.user_id
-//     });
+authRoutes.post('/authenticate', (req, res) => {
+    const authData = chatkit.authenticate({
+        userId: req.query.user_id
+    });
 
-//     res.status(authData.status)
-//         .send(authData.body);
-// })
+    res.status(authData.status)
+        .send(authData.body);
+})
+
 
 module.exports = authRoutes;

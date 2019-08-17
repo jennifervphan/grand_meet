@@ -3,13 +3,14 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    margin: 20px;
     /* opacity: 0.8; */
 }
 
 .ProfilePage h3,
 p {
     font-family: 'Rubik', sans-serif;
-    color: rgb(22, 22, 22) !important;
+    color: black !important;
 }
 
 .profilePic {

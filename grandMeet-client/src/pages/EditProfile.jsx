@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import MainLayout from '../components/layout/MainLayout';
 import axios from 'axios';
+import '../components/auth/Login.css'
 
 export default class EditProfile extends Component {
     constructor(props){
         super(props);
         this.formRef = React.createRef();
-        this.state = { username: '', about: '', file: null };
+        this.state = {about: '', file: null };
       }
     
       handleFormSubmit = (event) => {
@@ -21,12 +22,12 @@ export default class EditProfile extends Component {
           })
         .then(response => {
             this.setState({
-                username: "", 
                 about: "",
                 file: null
     
             });
-            this.props.getUser(response)
+            localStorage.setItem('user', JSON.stringify(response.data));
+            this.props.history.push('/profile')
         })
         .catch( error => console.log(error) )
       }
@@ -44,15 +45,12 @@ export default class EditProfile extends Component {
     render() {
         return (
             <MainLayout {...this.props}>
-                <form className="editPage" ref={this.formRef} onSubmit={this.handleFormSubmit}>
-                    <label>Username </label>
-                    <input type="text" name="username" placeholder={this.props.userInSession.username} value={this.state.username} onChange={ e => this.handleChange(e)}/>
-
+                <form className="editPage signupForm" ref={this.formRef} onSubmit={this.handleFormSubmit}>
                     <label>About </label>
-                    <input type="text" name="about" value={this.state.about} onChange={ e => this.handleChange(e)}/>
+                    <input style={{height:'100px', width:'400px'}} type="text" name="about" value={this.state.about} onChange={ e => this.handleChange(e)}/>
 
                     <label>Profile Picture </label>
-                    <input type="file" name="picture" onChange={this.uploadPic}/>
+                    <input style={{border:"solid 1px grey", width:"400px"}} type="file" name="picture" onChange={this.uploadPic}/>
 
                     <button className="submitBtn">Save</button>
                 </form>

@@ -11,32 +11,49 @@ export default class Profile extends Component {
         this.service = new AuthService();
       }
     
-      componentDidMount(nextProps) {
-        this.setState({...this.state, loggedInUser: this.props.userInSession });
+      componentDidMount() {
+        debugger
+        let user= this.props.getUser(); 
+        this.setState({loggedInUser:user})
+        debugger
       }
-      // nextProps["userInSession"]
+      
+      // getTheUser= () => {
+      //   return JSON.parse(localStorage.getItem('user'));
+      // }
+
       logoutUser = () =>{
         this.service.logout()
         .then(() => {
           this.setState({ loggedInUser: null });
-          this.props.getUser(null);  
+          // this.props.getUser();  
         })
       }
 
     render() {
-        return (
-          <MainLayout {...this.props}>
+          if(this.state.loggedInUser){
+            return (
+
+            <MainLayout {...this.props}>
             <div className="ProfilePage">
-                <div className="profilePic" style={{  backgroundImage: `url(${this.props.userInSession.profilePicUrl})`}}></div>
+                <div className="profilePic" style={{  backgroundImage: `url(${this.state.loggedInUser.profilePicUrl})`}}></div>
                 <Link style={{ color: 'grey', textDecoration:"none" }} to="/editProfile"><div className="editIcon"></div></Link>
-                <h3>Welcome {this.props.userInSession.username}!</h3>
+                <h3>Welcome {this.state.loggedInUser.username}!</h3>
                 <p>About </p>
-                <p>{this.props.userInSession.about}</p>
+                <p>{this.state.loggedInUser.about}</p>
                 <Link to='/'>
                 <button onClick={() => this.logoutUser()}>Logout</button>
                 </Link>
             </div>
           </MainLayout>
-        )
+                  )
+
+          }
+          {
+            return(
+              <MainLayout {...this.props}>Loading...</MainLayout>
+            )
+          }
+         
     }
 }

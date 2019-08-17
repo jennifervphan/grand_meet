@@ -4,6 +4,11 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    margin: 20px 0;
+}
+
+.NearbyPage h4 {
+    color: black;
 }
 
 .eachUser {

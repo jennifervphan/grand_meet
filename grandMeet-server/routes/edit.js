@@ -5,14 +5,12 @@ const uploadCloud = require('../configs/cloudinary');
 const User = require('../models/user-model');
 
 router.post('/edit', uploadCloud.single('picture'), (req, res, next) => {
-    const username = req.body.username;
     const about = req.body.about;
     const user = req.body.user;
     User.findOne({ _id: user })
         .then(user => {
             let userId = user._id;
             let updateUser = {
-                username: username,
                 about: about,
                 profilePicUrl: req.file.url,
                 profilePicName: req.file.originalname

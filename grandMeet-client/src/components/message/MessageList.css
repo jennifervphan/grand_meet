@@ -1,0 +1,27 @@
+.MessageList {
+    list-style: none;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    columns: 2;
+}
+
+.eachMesDiv {
+    display: flex;
+}
+
+.eachMesDiv img {
+    width: 30px;
+}
+
+.currentUser {
+    float: right;
+    width: 50%;
+    border-top-right-radius: 0;
+}
+
+.chatPartner {
+    float: left;
+    margin-right: 50%;
+    width: 50%;
+    border-top-left-radius: 0;
+}

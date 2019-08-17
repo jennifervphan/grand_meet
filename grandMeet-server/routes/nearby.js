@@ -11,6 +11,7 @@ router.get('/nearby', (req, res, next) => {
                     j--
                 }
             }
+
             console.log(users)
             res.status(200).json(users);
         })

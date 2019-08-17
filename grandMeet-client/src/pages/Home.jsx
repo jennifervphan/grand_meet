@@ -5,9 +5,23 @@ import "./Home.css";
 
 export default class Home extends Component {
     render() {
-        return (
+        if (this.props.userInSession){
+            return (
+                <div className="Homepage">
+                <MainLayout {...this.props}>
+                    <div className="welcomeInfo">
+                    <h1>talk.share.meet.</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                    </p>
+                    </div>
+                </MainLayout>
+                </div>
+            )
+        }else {
+            return (
             <div className="Homepage">
-            <MainLayout>
+            <MainLayout {...this.props}>
                 <div className="welcomeInfo">
                 <h1>talk.share.meet.</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
@@ -17,6 +31,7 @@ export default class Home extends Component {
                 </div>
             </MainLayout>
             </div>
-        )
+        ) 
+        }   
     }
 }

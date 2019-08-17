@@ -5,7 +5,9 @@ const cookieParser = require('cookie-parser');
 const express = require('express');
 const favicon = require('serve-favicon');
 const hbs = require('hbs');
+const session = require('express-session');
 const mongoose = require('mongoose');
+const MongoStore = require('connect-mongo')(session);
 const logger = require('morgan');
 const path = require('path');
 const cors = require('cors');
@@ -17,13 +19,12 @@ const chatkit = new Chatkit.default({
 })
 
 
-const session = require('express-session');
 const passport = require('passport');
 
 require('./configs/passport');
 
 mongoose
-    .connect('mongodb://localhost/grandMeet', { useNewUrlParser: true })
+    .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
     .then(x => {
         console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
     })
@@ -46,6 +47,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+// app.use(require('./middleware/userInViews')());
+
 
 // Express View engine setup
 
@@ -62,11 +65,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // ADD SESSION SETTINGS HERE:
+// app.use(session({
+//     secret: "some secret goes here",
+//     resave: true,
+//     saveUninitialized: true
+// }));
 app.use(session({
-    secret: "some secret goes here",
+    name: "session",
+    secret: process.env.SECRET,
+    store: new MongoStore({
+        url: process.env.MONGODB_URI,
+        ttl: 4 * 60 * 60 // 2-hour sessions
+    }),
     resave: true,
-    saveUninitialized: true
-}));
+    saveUninitialized: true,
+
+}))
 
 // USE passport.initialize() and passport.session() HERE:
 app.use(passport.initialize());
@@ -87,5 +101,6 @@ app.use('/', index);
 app.use('/api', require('./routes/auth-routes'));
 app.use('/api', require('./routes/edit'));
 app.use('/api', require('./routes/nearby'));
+app.use('/api', require('./routes/inbox'));
 
 module.exports = app;

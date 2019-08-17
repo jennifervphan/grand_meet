@@ -3,6 +3,7 @@
     width: 100vw;
     height: 100vh;
     font-family: 'Rubik', sans-serif;
+    opacity: 0.7;
 }
 
 button {

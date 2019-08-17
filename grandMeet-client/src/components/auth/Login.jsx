@@ -19,7 +19,7 @@ class Login extends Component {
     this.service.login(username,password, {longitude: this.props.coords.longitude, latitude: this.props.coords.latitude})
     .then( response => {
         this.setState({ username: "", password: ""});
-        this.props.getUser(response)
+        // this.props.getUser();
         this.props.history.push('/profile')
     })
     .catch( error => console.log(error) )
@@ -33,7 +33,7 @@ class Login extends Component {
   render(){
     return(
       <div className="loginPage">
-      <MainLayout>
+      <MainLayout {...this.props}>
       <Link to="/" style={{ textDecoration: 'none', color:"white" }}><i className="fas fa-times-circle fa-2x"></i></Link>
         <div className="loginForm">
         <h3>Log in</h3>

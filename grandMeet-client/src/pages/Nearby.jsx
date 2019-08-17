@@ -64,11 +64,11 @@ class Nearby extends Component {
         const users = this.state.sortedUsers;
         let eachUser=users.map(user=>{
             return(
-                <div className="eachUser" key={user.username}>
-                    <Link to={{ pathname: `/nearby/${user._id}`,
+                // <div className="eachUser" key={user.username}>
+                    <Link style={{textDecoration:"none"}} to={{ pathname: `/nearby/${user._id}`,
                                 nearbyUserProps: {user: user}}}>
 
-                        <div className="avaPic" style={{backgroundImage:`url(${user.profilePicUrl})` }}>
+                        <div className="avaPic eachUser" style={{backgroundImage:`url(${user.profilePicUrl})` }}>
                             {/* <i className="fas fa-info-circle fa-2x"></i> */}
                         <div>
                             <h4>{user.username}</h4>
@@ -76,7 +76,7 @@ class Nearby extends Component {
                         </div>
                         </div>
                     </Link>
-                </div>
+                // </div>
             )
         })
         return (
@@ -87,7 +87,9 @@ class Nearby extends Component {
             </MainLayout>
         )}
         return(
-            <h1>No nearby Users</h1>
+            <MainLayout {...this.props}>
+                <h1>Loading...</h1>
+            </MainLayout>
         )
     }
 }

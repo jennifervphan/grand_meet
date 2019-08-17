@@ -22,7 +22,7 @@ class Signup extends Component {
             file: null
 
         });
-        this.props.getUser(response)
+        this.props.getUser()
     })
     .catch( error => console.log(error) )
   }
@@ -40,7 +40,7 @@ class Signup extends Component {
   render(){
     return(
       <div className="loginPage">
-      <MainLayout>
+      <MainLayout {...this.props}>
       <Link to="/" style={{ textDecoration: 'none', color:"white" }}><i className="fas fa-times-circle fa-2x"></i></Link>
         <div className="signupForm">
         <h3>Register</h3>

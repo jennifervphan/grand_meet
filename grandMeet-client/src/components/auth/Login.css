@@ -90,3 +90,11 @@
 .signupForm p {
     color: rgb(22, 22, 22) !important;
 }
+
+.editPage input {
+    margin: 0 0 20px 0;
+}
+
+.editPage label {
+    margin: 0;
+}

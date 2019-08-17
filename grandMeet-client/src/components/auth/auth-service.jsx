@@ -16,8 +16,10 @@ class AuthService {
       withCredentials: true,
       data:form
     })
-    // return this.service.post('/signup', {username, password, data})
-    .then(response => response.data)
+    .then(response => {
+      this.setUser(response.data)
+      return response.data    
+    })
   }
 
   loggedin = () => {
@@ -34,13 +36,24 @@ class AuthService {
   //   })
   (username, password, coordinates) => {
     return this.service.post('/login', {username, password, coordinates})
-    .then(response => response.data)
-      // <Redirect to="/profile"/>)
+    .then(response => {
+      this.setUser(response.data)
+    return response.data})     
   }
-  
+
+  setUser(user){
+    localStorage.setItem('user', JSON.stringify(user));
+}
+
+// getUser(){
+//   return JSON.parse(localStorage.getItem('user'));
+// }
+
   logout = () => {
     return this.service.post('/logout', {})
-    .then(response => response.data)
+    .then(() => {
+      localStorage.removeItem('user');
+    })
   }
 }
 

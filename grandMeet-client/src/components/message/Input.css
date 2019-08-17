@@ -1,0 +1,24 @@
+.message-submit {
+    width: 30%;
+    background-color: grey;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+}
+
+.input-field {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+}
+
+.message-input {
+    width: 70%;
+    height: 50px;
+    border: 0;
+    border-top: 1px solid #e0e0e0;
+    font-size: 18px;
+    padding-left: 2px
+}
