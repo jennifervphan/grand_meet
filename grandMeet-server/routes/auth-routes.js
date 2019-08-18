@@ -66,7 +66,7 @@ authRoutes.post('/signup', uploadCloud.single('picture'), (req, res, next) => {
                 // chatkit creat new user
 
                 chatkit.createUser({
-                        id: aNewUser._id,
+                        id: aNewUser.username,
                         name: aNewUser.username
                     })
                     .then((user) => {
@@ -110,7 +110,7 @@ authRoutes.post('/login', (req, res, next) => {
                     req.session.user = user;
                     chatkit.createUser({
                             name: user.username,
-                            id: user._id
+                            id: user.username
                         })
                         .then((newuser) => {
                             console.log(newuser)

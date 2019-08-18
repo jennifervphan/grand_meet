@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import MainLayout from '../components/layout/MainLayout';
 
 export default class NearbyUser extends Component {
     constructor(props){
@@ -25,6 +26,7 @@ export default class NearbyUser extends Component {
     render() {
         return (
             <div className="NearbyUser">
+                <MainLayout {...this.props}>
                 <div className="avaPic" style={{backgroundImage:`url(${this.state.profilePicUrl})` }}>
                 </div>
                 <h3>{this.state.username}</h3>
@@ -32,9 +34,10 @@ export default class NearbyUser extends Component {
                 <hr/>
                 <p>{this.state.about}</p>
                 <Link to={{ pathname: `/chat/${this.state._id}`,
-                                chatPartner: {user: this.props.location.nearbyUserProps.user}}}>
-                    <button className="submitBtn" type="submit">Message</button>
+                            chatPartner: {user: this.props.location.nearbyUserProps.user}}}>
+                    <button style={{margin: "20px 0"}} className="" type="submit">Message</button>
                 </Link>
+                </MainLayout>
             </div>
         )
     }

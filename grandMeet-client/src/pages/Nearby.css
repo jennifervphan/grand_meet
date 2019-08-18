@@ -4,7 +4,7 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin: 20px 0;
+    padding: 20px 0;
 }
 
 .NearbyPage h4 {
@@ -12,8 +12,7 @@
 }
 
 .eachUser {
-    width: 30%;
-    margin: 0 20px 20px 20px;
+    margin: 0 20px 20px 20px !important;
 }
 
 .avaPic {
@@ -23,8 +22,9 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    margin-bottom: 30px;
     position: relative;
+    background-position: center;
+    margin: 20px auto;
 }
 
 .avaPic div {

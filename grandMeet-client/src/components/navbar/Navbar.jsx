@@ -11,6 +11,7 @@ class Navbar extends Component {
   }
 
   componentDidMount() {
+    debugger
     let user= this.props.getUser(); 
     this.setState({loggedInUser:user})
   }
@@ -18,9 +19,10 @@ class Navbar extends Component {
   render(){
     if(this.state.loggedInUser){
       return(
-        <nav className="Navbar" style={{backgroundColor:"grey"}}>
+        <nav className="Navbar">
           <Link to="/profile" style={{ textDecoration: 'none', color: "white"}}>Profile</Link>
           <Link to="/nearby" style={{ textDecoration: 'none', color: "white"}}>Nearby</Link>
+          <Link to="/share" style={{ textDecoration: 'none', color: "white"}} >Share</Link>
           <Link to="/inbox" style={{ textDecoration: 'none', color: "white"}}><i className="fas fa-comments fa-2x"></i></Link>
         </nav>
       )

@@ -102,5 +102,7 @@ app.use('/api', require('./routes/auth-routes'));
 app.use('/api', require('./routes/edit'));
 app.use('/api', require('./routes/nearby'));
 app.use('/api', require('./routes/inbox'));
-
+app.use('/api', require('./routes/newChat'));
+app.use('/api', require('./routes/share'));
+app.use('/api', require('./routes/game'));
 module.exports = app;

@@ -33,7 +33,11 @@ class Login extends Component {
   render(){
     return(
       <div className="loginPage">
-      <MainLayout {...this.props}>
+      {/* <MainLayout {...this.props}> */}
+      <nav className="Navbar">
+            <Link to="/" style={{textDecoration:"none", color: "white"}}><h3>grandMeet</h3></Link>
+            <Link to='/login' style={{ textDecoration: 'none', color:"white"}}>Login</Link>
+      </nav>
       <Link to="/" style={{ textDecoration: 'none', color:"white" }}><i className="fas fa-times-circle fa-2x"></i></Link>
         <div className="loginForm">
         <h3>Log in</h3>
@@ -50,7 +54,7 @@ class Login extends Component {
         <Link to={"/signup"} style={{ color: 'rgb(5, 5, 5)', textDecoration:"underline" }}> Register</Link>
         </p>
         </div>
-      </MainLayout>
+      {/* </MainLayout> */}
       </div>
     )
   }

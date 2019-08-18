@@ -4,6 +4,7 @@
     justify-content: flex-start;
     align-items: center;
     margin: 20px;
+    background-color: rgb(102, 101, 101);
     /* opacity: 0.8; */
 }
 
@@ -11,6 +12,8 @@
 p {
     font-family: 'Rubik', sans-serif;
     color: black !important;
+    margin: 0;
+    padding: 0;
 }
 
 .profilePic {
@@ -22,6 +25,7 @@ p {
     -o-background-size: cover;
     background-size: cover;
     margin-bottom: 30px;
+    background-position: center;
 }
 
 .editIcon::before {

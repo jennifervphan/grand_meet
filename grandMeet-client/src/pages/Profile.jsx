@@ -26,6 +26,7 @@ export default class Profile extends Component {
         this.service.logout()
         .then(() => {
           this.setState({ loggedInUser: null });
+          this.props.history.push('/');
           // this.props.getUser();  
         })
       }
@@ -33,27 +34,24 @@ export default class Profile extends Component {
     render() {
           if(this.state.loggedInUser){
             return (
-
-            <MainLayout {...this.props}>
-            <div className="ProfilePage">
-                <div className="profilePic" style={{  backgroundImage: `url(${this.state.loggedInUser.profilePicUrl})`}}></div>
-                <Link style={{ color: 'grey', textDecoration:"none" }} to="/editProfile"><div className="editIcon"></div></Link>
-                <h3>Welcome {this.state.loggedInUser.username}!</h3>
-                <p>About </p>
-                <p>{this.state.loggedInUser.about}</p>
-                <Link to='/'>
-                <button onClick={() => this.logoutUser()}>Logout</button>
-                </Link>
-            </div>
-          </MainLayout>
-                  )
-
+              <MainLayout {...this.props}>
+                <div className="ProfilePage">
+                    <div className="profilePic" style={{  backgroundImage: `url(${this.state.loggedInUser.profilePicUrl})`}}></div>
+                    <Link style={{ color: 'grey', textDecoration:"none" }} to="/editProfile"><div className="editIcon"></div></Link>
+                    <h3>{this.state.loggedInUser.username}</h3>
+                    <p>About: {this.state.loggedInUser.about} </p>
+                    <p></p>
+                    <Link to='/'>
+                    <button style={{margin: "20px 0"}} onClick={() => this.logoutUser()}>Logout</button>
+                    </Link>
+                </div>
+              </MainLayout>
+            )
           }
           {
             return(
               <MainLayout {...this.props}>Loading...</MainLayout>
             )
-          }
-         
+          }         
     }
 }

@@ -8,7 +8,7 @@ const chatkit = new Chatkit.default({
     key: "b7bd9cc1-fbd0-43dc-b9d7-6ecfddb236d7:ZVFoqZ7HLsWL6XNhbnugGcNs8xBQZKHkmLwyRP945AA="
 })
 
-router.get('/inbox', (req, res, next) => {
+router.get('/newChat', (req, res, next) => {
     chatkit.getUserRooms({
             userId: `${req.user.username}`,
         })

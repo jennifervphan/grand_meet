@@ -70,6 +70,7 @@ import React, { Component } from 'react';
 import { ChatManager, TokenProvider } from '@pusher/chatkit-client';
 import MessageList from './MessageList';
 import Input from './Input';
+import axios from 'axios';
 
 export default class ChatApp extends Component {
     constructor(props){
@@ -85,15 +86,62 @@ export default class ChatApp extends Component {
     }
 
     componentDidMount (){
-        const chatManager = new ChatManager({
-            instanceLocator: process.env.REACT_APP_chatkit_instance_locator,
-            userId: this.props.userInSession._id,
-            tokenProvider: new TokenProvider({
-                url:`https://us1.pusherplatform.io/services/chatkit_token_provider/v1/95077b15-c43c-4d68-ae92-7a1f082f91c8/token`
-            })
-        })
+        debugger
+        axios.get(`${process.env.REACT_APP_API}/newChat`, 
+        {withCredentials:true})
+        .then(response => {
+            let chatRooms= response.data;
+            debugger
+            let existRoom="";
+            for (var i=0; i<chatRooms.length; i++){
+                let usersInRoom = chatRooms[i]["member_user_ids"]
+                for (var j=0; j<usersInRoom.length; j++){
+                    debugger
+                    if (usersInRoom[j]===this.state.chatPartner.username){
+                        existRoom= chatRooms[i].id
+                        debugger
+                        break;
+                    }
+                }
+            }
 
-        chatManager
+            const chatManager = new ChatManager({
+                instanceLocator: process.env.REACT_APP_chatkit_instance_locator,
+                userId: this.props.userInSession.username,
+                tokenProvider: new TokenProvider({
+                    url:`https://us1.pusherplatform.io/services/chatkit_token_provider/v1/95077b15-c43c-4d68-ae92-7a1f082f91c8/token`
+                })
+                })
+
+            if (existRoom){
+                debugger
+                chatManager
+                    .connect()
+                    .then(currentUser => {
+                        this.setState({
+                            currentUser:currentUser
+                        })
+                        currentUser.subscribeToRoom({
+                            roomId: `${existRoom}`,
+                            messageLimit: 100,
+                            hooks: {
+                                onMessage: message => {
+                                    console.log(message)
+                                    this.setState({
+                                        messages: [...this.state.messages, message]
+                                    })
+                                },
+                            }})
+                            .then(currentRoom => {
+                            console.log(currentRoom.userIds);
+                            this.setState({
+                                currentRoom,
+                                users: currentRoom.userIds
+                            })
+                            })
+                            .catch(error => console.log(error))
+            })} else {
+                chatManager
                 .connect()
                 .then(currentUser => {
                     this.setState({
@@ -103,10 +151,10 @@ export default class ChatApp extends Component {
                     return currentUser.createRoom({
                         name: `${this.props.location.chatPartner.user.username}`,
                         private: true,
-                        addUserIds: [ `${this.state.chatPartner._id}`],
+                        addUserIds: [ `${this.state.chatPartner.username}`],
                         customData: { foo: 42 },
-                      })
-                      .then(room => {
+                    })
+                    .then(room => {
                         return currentUser.subscribeToRoom({
                             roomId: `${room.id}`,
                             messageLimit: 100,
@@ -125,9 +173,11 @@ export default class ChatApp extends Component {
                             })
                             })
                             .catch(error => console.log(error))
-                    })
-                })
+            })})
+         }
                 
+            // this.setState({chatRooms:chatRooms})
+        })
     }
     
     addMessage(text) {

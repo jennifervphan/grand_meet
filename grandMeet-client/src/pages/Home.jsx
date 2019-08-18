@@ -21,7 +21,11 @@ export default class Home extends Component {
         }else {
             return (
             <div className="Homepage">
-            <MainLayout {...this.props}>
+            {/* <MainLayout {...this.props}> */}
+            <nav className="Navbar">
+            <Link to="/" style={{textDecoration:"none", color: "white"}}><h3>grandMeet</h3></Link>
+            <Link to='/login' style={{ textDecoration: 'none', color:"white"}}>Login</Link>
+            </nav>
                 <div className="welcomeInfo">
                 <h1>talk.share.meet.</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
@@ -29,7 +33,7 @@ export default class Home extends Component {
                 </p>
                 <Link to='/signup' style={{ textDecoration: 'none' }}><button className="registerBtnHome">Register</button></Link>
                 </div>
-            </MainLayout>
+            {/* </MainLayout> */}
             </div>
         ) 
         }   

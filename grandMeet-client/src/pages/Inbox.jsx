@@ -1,34 +1,36 @@
 import React, { Component } from 'react';
 import {Route} from 'react-router-dom';
-import './Inbox.css';
+import axios from 'axios';
 import AllRooms from '../components/message/AllRooms';
 import EachRoom from '../components/message/EachRoom';
 import MainLayout from '../components/layout/MainLayout'
-import axios from 'axios';
+import './Inbox.css';
 
 export default class Inbox extends Component {
     constructor(props){
         super(props);
         this.state={
-            chatRooms:[]
+            chatRooms:[],
+            currentUser:{}
         };
     }
 
     componentDidMount (){
         debugger
+        let user= this.props.getUser(); 
         axios.get(`${process.env.REACT_APP_API}/inbox`, 
                     {withCredentials:true})
         .then(response => {
                 let chatRooms= response.data;
-                this.setState({chatRooms:chatRooms})
+                this.setState({chatRooms:chatRooms, currentUser: user})
     })
     }
 
     render() {
         return (
             <MainLayout {...this.props} className="Dashboard">
-                <AllRooms rooms={this.state.chatRooms}/>
-                <Route path="/inbox/:id" render={(props)=><EachRoom rooms={this.state.chatRooms} {...props}/>}/>
+                <AllRooms rooms={this.state.chatRooms} currentUser={this.state.currentUser}/>
+                <Route path="/inbox/:id" render={(props)=><EachRoom rooms={this.state.chatRooms} userInSession={this.state.loggedInUser} {...props}/>}/>
             </MainLayout>
         )
     }

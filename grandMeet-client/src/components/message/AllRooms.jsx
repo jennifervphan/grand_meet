@@ -1,38 +1,28 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import '../../pages/Inbox.css';
+import './AllRooms.css';
+import EachRoom from './EachRoom';
+import {Route} from 'react-router-dom';
 
 export default class AllRooms extends Component {
-    // constructor(props){
-    //     super(props);
-    //     this.state={
-    //         chatRooms:[]
-    //     };
-    // }
-
-    // componentDidMount (){
-    //     axios.get(`${process.env.REACT_APP_API}/inbox`, {withCredentials:true})
-    //     .then(response => {
-    //             let chatRooms= response.data;
-    //                 this.setState({chatRooms:chatRooms})
-    // })
-    // }
-
     render() {
         const {rooms} =this.props
-        let eachRoom= rooms.map(room=>{
-            console.log(room)
+        let eachRoom= rooms.map((room, index)=>{
+            let roomName= room["member_user_ids"].filter(id => id !== this.props.currentUser.username)[0]
+            console.log(roomName)
             return(
-                <Link to={`/inbox/${room.id}`}>
-                {room.name}
+                <Link className="eachRoom" to={`/inbox/${room.id}`} key={index}>
+                <li >
+                    {roomName}
+                </li>
                 </Link>
             )
         })
         return (
-            <div className="roomsTab">
+            <ul className="roomsTab">
              {eachRoom}   
-            </div>
+            </ul>
         )
     }
 }

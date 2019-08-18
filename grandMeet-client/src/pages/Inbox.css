@@ -1,15 +1,8 @@
-.roomsTab {
-    width: 20%;
-    height: 100vh;
-    overflow-y: scroll;
-    border-right: solid 1px grey;
-}
-
-.roomsTab a {
-    text-decoration: none;
-}
-
 .Dashboard {
     display: flex;
     justify-content: flex-start;
+}
+
+.eachRoom {
+    width: 65%;
 }

@@ -47,10 +47,10 @@ export default class EditProfile extends Component {
             <MainLayout {...this.props}>
                 <form className="editPage signupForm" ref={this.formRef} onSubmit={this.handleFormSubmit}>
                     <label>About </label>
-                    <input style={{height:'100px', width:'400px'}} type="text" name="about" value={this.state.about} onChange={ e => this.handleChange(e)}/>
+                    <input style={{height:'100px', width:'300px'}} type="text" name="about" value={this.state.about} onChange={ e => this.handleChange(e)}/>
 
                     <label>Profile Picture </label>
-                    <input style={{border:"solid 1px grey", width:"400px"}} type="file" name="picture" onChange={this.uploadPic}/>
+                    <input style={{border:"solid 1px grey", width:"300px"}} type="file" name="picture" onChange={this.uploadPic}/>
 
                     <button className="submitBtn">Save</button>
                 </form>
