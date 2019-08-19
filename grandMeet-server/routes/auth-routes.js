@@ -12,8 +12,6 @@ const chatkit = new Chatkit.default({
     key: "b7bd9cc1-fbd0-43dc-b9d7-6ecfddb236d7:ZVFoqZ7HLsWL6XNhbnugGcNs8xBQZKHkmLwyRP945AA="
 })
 
-
-
 authRoutes.post('/signup', uploadCloud.single('picture'), (req, res, next) => {
     const username = req.body.username;
     const password = req.body.password;
@@ -161,9 +159,9 @@ authRoutes.get('/loggedin', (req, res, next) => {
 
 authRoutes.post('/authenticate', (req, res) => {
     const authData = chatkit.authenticate({
-      userId: req.query.user_id,
+        userId: req.query.user_id,
     });
     res.status(authData.status).send(authData.body);
-  })
+})
 
 module.exports = authRoutes;

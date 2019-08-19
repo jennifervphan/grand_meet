@@ -22,7 +22,8 @@ class Signup extends Component {
             file: null
 
         });
-        this.props.getUser()
+        this.props.history.push('/profile')
+        // this.props.getUser()
     })
     .catch( error => console.log(error) )
   }

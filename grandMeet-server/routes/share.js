@@ -9,15 +9,17 @@ router.post('/share', (req, res) => {
             id: userId,
             name: userId
         })
-        .catch(() => {})
         .then(() => {
             const authData = chatkit.authenticate({
-                userId: userId
+                userId: userId,
             });
-
-            res.status(authData.status)
-                .send(authData.body);
-        });
+            debugger
+            console.log(authData)
+            res.status(authData.status).send(authData.body);
+        })
+        .catch((err) => {
+            console.log(err)
+        })
 });
 
 module.exports = router;

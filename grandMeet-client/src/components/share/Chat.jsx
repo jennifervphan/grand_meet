@@ -7,7 +7,7 @@ export default class Chat extends React.Component {
         super(props);
 
         this.state = {
-            users: props.room.users,
+            users: this.props.room.userIds,
             messages: [],
             newMessage: ''
         };
@@ -27,6 +27,7 @@ export default class Chat extends React.Component {
                     });
                 },
                 onNewMessage: (message) => {
+                    console.log(message)
                     const messages = this.state.messages;
                     let opponent;
                     if (message.attachment && message.attachment.link && message.attachment.link.startsWith('urn:player:')) {
@@ -38,14 +39,18 @@ export default class Chat extends React.Component {
                     messages.push({
                         id: message.id,
                         user: message.senderId,
-                        message: message.text,
+                        message: this.state.newMessage,
                         opponent: opponent
                     });
                     this.setState({
-                        messages: messages
+                        messages: [...messages, message]
                     });
                 }
             }
+        })
+        .then(currentRoom=>{
+            console.log(currentRoom)
+            this.setState({user: currentRoom.userIds})
         })
     }
 

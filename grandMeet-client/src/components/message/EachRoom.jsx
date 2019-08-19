@@ -95,7 +95,6 @@ export default class EachRoom extends Component {
                         }})
                         .then(currentRoom => {
                             debugger
-                        console.log(currentRoom.userIds);
                         this.setState({
                             currentRoom,
                             users: currentRoom.userIds

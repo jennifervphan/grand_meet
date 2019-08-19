@@ -1,33 +1,38 @@
 import React from 'react';
     import { Segment, Grid } from 'semantic-ui-react';
-    import { TokenProvider, ChatManager } from '@pusher/chatkit';
+    import { TokenProvider, ChatManager } from '@pusher/chatkit-client';
     import Rooms from './Rooms';
     import Chat from './Chat';
     import axios from 'axios';
 
     export default class Games extends React.Component {
-        state = {
+        constructor(props) {
+            super(props);
+            debugger
+            this.state = {
             joined: [],
             joinable: []
         };
-        constructor(props) {
-            super(props);
+        }
 
-            this.chatManager = new ChatManager({
+        componentDidMount(){
+            const chatManager = new ChatManager({
                 instanceLocator: process.env.REACT_APP_chatkit_instance_locator,
-                userId: props.username,
+                userId: this.props.username,
                 tokenProvider: new TokenProvider({
                     url: `${process.env.REACT_APP_API}/share`
                 })
             });
 
-            this.chatManager
+            chatManager
             .connect()
             .then(currentUser => {
+                console.log(currentUser)
                 this.setState({
                     currentUser: currentUser
                 });
                 currentUser.getJoinableRooms().then((rooms) => {
+                    console.log(rooms)
                     let lobby = rooms.find(room => room.name === 'Lobby');
                     if (lobby) {
                         currentUser.joinRoom({ roomId: lobby.id });
@@ -49,6 +54,7 @@ import React from 'react';
                 console.log(e);
             });
         }
+
         _pollRooms() {
             const { currentUser } = this.state;
             currentUser.getJoinableRooms()
@@ -59,7 +65,9 @@ import React from 'react';
                     })
                 });
         }
+        
         _enterRoom(id) {
+            debugger
             const { currentUser } = this.state;
             currentUser.joinRoom({ roomId: id })
                 .then(() => {
@@ -72,6 +80,7 @@ import React from 'react';
                     console.log('Failed to enter room');
                 });
         }
+
         _leaveRoom(id) {
             const { currentUser } = this.state;
             currentUser.leaveRoom({ roomId: id })

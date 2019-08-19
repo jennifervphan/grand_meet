@@ -2,11 +2,14 @@ import React from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import { Container } from 'semantic-ui-react';
 import Login from '../components/share/Login';
-import Games from '../components/share/Game';
+import Games from '../components/share/Games';
 
 class SharePage extends React.Component {
-  state = {};
-
+  constructor(props){
+      super(props);
+      this.state = {};
+  }
+  
   render() {
     let contents;
     if (this.state.username) {
