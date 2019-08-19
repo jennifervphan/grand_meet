@@ -6,33 +6,33 @@ export default class MessageList extends Component {
         let eachMess= this.props.messages.map((message, index)=>{
             if(message.senderId === this.props.userInSession.username){
                 return(
-                    <li key={index} className="currentUserDiv">
-                        <div className="eachMes">
-                        <div className="eachMesDiv" style={{backgroundImage: `url(${this.props.userInSession.profilePicUrl})`}}>
-                        </div>
-                        <h3 className="currentUser">{message.text}</h3>
-                        </div>
-                    </li>
+                    <div key={index} className="currentUserDiv">
+                        {/* <div className="eachMes"> */}
+                        {/* <div className="eachMesDiv" style={{backgroundImage: `url(${this.props.userInSession.profilePicUrl})`}}> */}
+                        {/* </div> */}
+                        <p className="currentUser">{message.text}</p>
+                        {/* </div> */}
+                    </div>
                     )
             }
             else{
                 return(
-                    <li key={index} >
-                        <div className="eachMes">                       
-                        <div className="eachMesDiv" style={{backgroundImage: `url(${this.props.location.chatPartner.user.profilePicUrl})`}}>
-                        </div>
-                        <h3 className="chatPartner">{message.text}</h3>
-                        </div>
-                    </li>
+                    <div key={index} >
+                        {/* <div className="eachMes">                        */}
+                        {/* <div className="eachMesDiv" style={{backgroundImage: `url(${this.props.location.chatPartner.user.profilePicUrl})`}}> */}
+                        {/* </div> */}
+                        <p className="chatPartner">{message.text}</p>
+                        {/* </div> */}
+                    </div>
                 )
             }
             
             
         })
         return (
-            <ul className="MessageList">
+            <div className="MessageList">
                 {eachMess}
-            </ul>
+            </div>
         )
     }
 }

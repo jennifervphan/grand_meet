@@ -43,8 +43,8 @@ import "./Input.css";
                     <button type="button" className="toggle-emoji" onClick={this.toggleEmojiPicker}>
                         <Smile />
                     </button>
-                    <input className="message-input" type="text" placeholder="Type your message..." onChange={this.handleChange} value={this.state.message}/>
-                    <input className="message-submit" type="submit" value="send" />
+                    <input className="message-input" type="text" placeholder="Type your message and hit ENTER to send..." onChange={this.handleChange} value={this.state.message}/>
+                    {/* <input className="message-submit" type="submit" value="send" /> */}
                     </form>
                 </>
             )

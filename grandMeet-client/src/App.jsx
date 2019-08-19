@@ -53,7 +53,7 @@ class App extends Component {
           <Route exact path='/' render = {(routeProps) => <Home userInSession={this.state.loggedInUser} getUser={this.getTheUser} {...routeProps}/>} />
           <Route exact path='/signup' render = {() => <Signup getUser={this.getTheUser} />} />
           <Route exact path='/login' render = {(routeProps) => <Login getUser={this.getTheUser} {...routeProps} />} />
-          <Route exact path='/inbox' render = {(routeProps) => <Inbox userInSession={this.state.loggedInUser} getUser={this.getTheUser} {...routeProps}/>} />
+          <Route path='/inbox' render = {(routeProps) => <Inbox userInSession={this.state.loggedInUser} getUser={this.getTheUser} {...routeProps}/>} />
           <Route exact path="/chat/:id" render= {(routeProps)=> <ChatPage userInSession={this.state.loggedInUser} getUser={this.getTheUser} {...routeProps}/>} />
           <Route exact path='/share' render = {(routeProps) => <SharePage userInSession={this.state.loggedInUser} getUser={this.getTheUser} {...routeProps}/>} />
         </div>

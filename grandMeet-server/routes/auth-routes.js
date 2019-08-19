@@ -150,14 +150,20 @@ authRoutes.get('/loggedin', (req, res, next) => {
 });
 
 
+// authRoutes.post('/authenticate', (req, res) => {
+//     const authData = chatkit.authenticate({
+//         userId: req.query.user_id
+//     });
+
+//     res.status(authData.status)
+//         .send(authData.body);
+// })
+
 authRoutes.post('/authenticate', (req, res) => {
     const authData = chatkit.authenticate({
-        userId: req.query.user_id
+      userId: req.query.user_id,
     });
-
-    res.status(authData.status)
-        .send(authData.body);
-})
-
+    res.status(authData.status).send(authData.body);
+  })
 
 module.exports = authRoutes;

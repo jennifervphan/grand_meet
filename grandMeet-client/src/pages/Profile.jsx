@@ -39,10 +39,10 @@ export default class Profile extends Component {
                     <div className="profilePic" style={{  backgroundImage: `url(${this.state.loggedInUser.profilePicUrl})`}}></div>
                     <Link style={{ color: 'grey', textDecoration:"none" }} to="/editProfile"><div className="editIcon"></div></Link>
                     <h3>{this.state.loggedInUser.username}</h3>
-                    <p>About: {this.state.loggedInUser.about} </p>
-                    <p></p>
+                    <hr style={{width: "100%"}}/>
+                    <p className="aboutSect">About: {this.state.loggedInUser.about} </p>
                     <Link to='/'>
-                    <button style={{margin: "20px 0"}} onClick={() => this.logoutUser()}>Logout</button>
+                    <button style={{margin: "20px 0"}} className="registerBtn" onClick={() => this.logoutUser()}>Logout</button>
                     </Link>
                 </div>
               </MainLayout>

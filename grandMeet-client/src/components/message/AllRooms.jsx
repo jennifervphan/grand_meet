@@ -2,19 +2,40 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import './AllRooms.css';
-import EachRoom from './EachRoom';
-import {Route} from 'react-router-dom';
 
 export default class AllRooms extends Component {
+    constructor (props){
+        super(props);
+        this.state={
+            user: JSON.parse(localStorage.getItem('user')),
+            otherUsers:{}
+        }
+    }
+
+    componentDidMount(){
+            axios.get(`${process.env.REACT_APP_API}/nearby`,
+                         {withCredentials:true})
+            .then(response=>{
+                 this.setState({otherUsers:response.data})
+             })
+            .catch(err=>{
+            console.log(err)
+            })
+    }
+
     render() {
         const {rooms} =this.props
         let eachRoom= rooms.map((room, index)=>{
-            let roomName= room["member_user_ids"].filter(id => id !== this.props.currentUser.username)[0]
-            console.log(roomName)
+            let roomName= room["member_user_ids"].filter(id => id !== this.state.user.username)[0]
+            let partner= this.state.otherUsers.filter(user => user.username=== roomName)[0]
             return(
                 <Link className="eachRoom" to={`/inbox/${room.id}`} key={index}>
                 <li >
+                    <div className="inboxList">
+                    <div className="eachMesDiv" style={{backgroundImage: `url(${partner.profilePicUrl})`}}>
+                    </div>
                     {roomName}
+                    </div>
                 </li>
                 </Link>
             )

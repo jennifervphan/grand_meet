@@ -2,15 +2,16 @@
     margin: 0;
     padding: 0 !important;
     width: 20%;
-    height: 100vh;
+    height: 90vh;
     overflow-y: scroll;
-    border-right: solid 1px rgb(46, 46, 46);
     list-style: none;
+    border-right: solid 1px rgb(209, 207, 207);
+    /* background-color: #c9ba9b; */
     /* line-height: 5; */
 }
 
 .roomsTab li {
-    border-bottom: solid 1px rgb(46, 46, 46);
+    /* border-bottom: solid 1px rgb(46, 46, 46); */
     padding: 20px;
 }
 
@@ -23,5 +24,18 @@
 }
 
 .eachRoom {
-    color: white;
+    color: black;
+}
+
+.eachRoom:hover {
+    color: black;
+    font-weight: bold;
+}
+
+.inboxList {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 }

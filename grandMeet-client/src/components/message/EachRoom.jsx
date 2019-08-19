@@ -16,22 +16,72 @@ export default class EachRoom extends Component {
         this.addMessage = this.addMessage.bind(this);
     }
 
+    componentDidUpdate(prevProps) {
+        if(prevProps.match.params.id !== this.props.match.params.id) {
+            const {params}= this.props.match;
+            let roomId=params.id
+            const chatManager = new ChatManager({
+                instanceLocator: process.env.REACT_APP_chatkit_instance_locator,
+                userId: this.props.userInSession.username,
+                tokenProvider: new TokenProvider({
+                    url: `${process.env.REACT_APP_API}/authenticate`
+                })
+            })
+    
+            chatManager
+                    .connect()
+                    .then(currentUser => {
+                        debugger
+    
+                        this.setState({
+                            currentUser:currentUser,
+                            messages:[]
+                        })
+                        currentUser.subscribeToRoom({
+                            roomId: `${roomId}`,
+                            messageLimit: 100,
+                            hooks: {
+                                onMessage: message => {
+                                    this.setState({
+                                        messages: [...this.state.messages, message]
+                                    })
+                                },
+                            }})
+                            .then(currentRoom => {
+                                debugger
+                            console.log(currentRoom.userIds);
+                            this.setState({
+                                currentRoom,
+                                users: currentRoom.userIds
+                            })
+                            })
+                            .catch(error => console.log(error))
+                        })
+        }
+    }
+
+
+
     componentDidMount (){
+        debugger
         const {params}= this.props.match;
         let roomId=params.id
         const chatManager = new ChatManager({
             instanceLocator: process.env.REACT_APP_chatkit_instance_locator,
-            userId: this.props.userInSession._id,
+            userId: this.props.userInSession.username,
             tokenProvider: new TokenProvider({
-                url:`https://us1.pusherplatform.io/services/chatkit_token_provider/v1/95077b15-c43c-4d68-ae92-7a1f082f91c8/token`
+                url: `${process.env.REACT_APP_API}/authenticate`
             })
         })
 
         chatManager
                 .connect()
                 .then(currentUser => {
+                    debugger
+
                     this.setState({
-                        currentUser:currentUser
+                        currentUser:currentUser,
+                        message:[]
                     })
                     currentUser.subscribeToRoom({
                         roomId: `${roomId}`,
@@ -44,6 +94,7 @@ export default class EachRoom extends Component {
                             },
                         }})
                         .then(currentRoom => {
+                            debugger
                         console.log(currentRoom.userIds);
                         this.setState({
                             currentRoom,
@@ -62,20 +113,11 @@ export default class EachRoom extends Component {
     }
 
     render() {
-        let eachMess= this.state.messages.map((message, index)=>{
-            return(
-                <li key={index} className="">
-                        <h3>{message.text}</h3>
-                    </li>
-            )   
-         })
-
+        debugger
         return (
-            <div className="eachRoom">
-                <ul>
-                {eachMess}
-                </ul>
-                <Input className="input-field" onSubmit={this.addMessage} />            
+            <div className="eachRoom"> 
+                <MessageList messages={this.state.messages} {...this.props}/>           
+                <Input className="input-field-one" onSubmit={this.addMessage} />            
             </div>
         )
     }

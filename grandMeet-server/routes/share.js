@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-const chatkit = require('@pusher/chatkit-server');
+const chatkit = require('./chatkit');
 
-router.post('/userInGame', (req, res) => {
+router.post('/share', (req, res) => {
     const userId = req.query.user_id;
 
     chatkit.createUser({

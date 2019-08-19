@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AuthService from './auth-service';
 import { Link } from 'react-router-dom';
-import MainLayout from '../layout/MainLayout';
+// import MainLayout from '../layout/MainLayout';
 
 class Signup extends Component {
   constructor(props){

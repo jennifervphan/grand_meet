@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Pusher = require('pusher');
-var chatkit = require('@pusher/chatkit-server');
+var chatkit = require('./chatkit');
 
 var pusher = new Pusher({
     appId: "845035",
@@ -10,7 +10,6 @@ var pusher = new Pusher({
     cluster: "eu",
     encrypted: true
 });
-
 
 const games = {};
 

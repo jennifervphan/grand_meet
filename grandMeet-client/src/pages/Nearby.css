@@ -9,22 +9,25 @@
 
 .NearbyPage h4 {
     color: black;
+    font-size:1.5rem;
 }
 
 .eachUser {
-    margin: 0 20px 20px 20px !important;
+    margin: 20px 20px 20px 20px !important;
 }
 
 .avaPic {
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     position: relative;
     background-position: center;
-    margin: 20px auto;
+    margin: 30px auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 .avaPic div {
@@ -40,4 +43,16 @@
     float: right;
     margin-left: 116px;
     color: red;
+}
+
+@media only screen and (max-width: 600px) {
+    .avaPic {
+        width: 500px;
+        height: 500px;}
+}
+
+@media only screen and (min-width: 601px) and (max-width:960px) {
+    .avaPic {
+        width: 500px;
+        height: 500px;}
 }

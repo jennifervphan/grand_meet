@@ -12,14 +12,18 @@ import React from 'react';
         };
         constructor(props) {
             super(props);
+
             this.chatManager = new ChatManager({
                 instanceLocator: process.env.REACT_APP_chatkit_instance_locator,
+                userId: props.username,
                 tokenProvider: new TokenProvider({
-                    url:`https://us1.pusherplatform.io/services/chatkit_token_provider/v1/95077b15-c43c-4d68-ae92-7a1f082f91c8/token`
-                }),
-                userId: props.username
+                    url: `${process.env.REACT_APP_API}/share`
+                })
             });
-            this.chatManager.connect().then(currentUser => {
+
+            this.chatManager
+            .connect()
+            .then(currentUser => {
                 this.setState({
                     currentUser: currentUser
                 });
@@ -39,7 +43,8 @@ import React from 'react';
                 });
                 setInterval(this._pollRooms.bind(this), 5000);
                 this._pollRooms();
-            }).catch((e) => {
+            })
+            .catch((e) => {
                 console.log('Failed to connect to Chatkit');
                 console.log(e);
             });
@@ -100,7 +105,7 @@ import React from 'react';
             const { currentUser } = this.state;
             let chat;
             if (currentUser) {
-                const room = currentUser.rooms.find((room) => room.id == this.state.activeRoom);
+                const room = currentUser.rooms.find((room) => room.id === this.state.activeRoom);
                 if (room) {
                     const game = this.state.activeRoom !== this.state.lobbyId && this.state.activeRoom;
                     chat = <Chat user={currentUser} room={room} key={room.id} startedGame={this._startedGame.bind(this)} game={game} />

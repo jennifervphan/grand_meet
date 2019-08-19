@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import AuthService from './auth-service';
 import { Link } from 'react-router-dom';
-import MainLayout from '../layout/MainLayout';
 import './Login.css';
 import {geolocated} from 'react-geolocated';
 

@@ -24,7 +24,7 @@ export default class Home extends Component {
             {/* <MainLayout {...this.props}> */}
             <nav className="Navbar">
             <Link to="/" style={{textDecoration:"none", color: "white"}}><h3>grandMeet</h3></Link>
-            <Link to='/login' style={{ textDecoration: 'none', color:"white"}}>Login</Link>
+            <Link to='/login' style={{ textDecoration: 'none', color:"white"}}><h3>Login</h3></Link>
             </nav>
                 <div className="welcomeInfo">
                 <h1>talk.share.meet.</h1>

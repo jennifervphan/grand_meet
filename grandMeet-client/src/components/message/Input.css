@@ -1,6 +1,6 @@
 .message-submit {
     width: 30%;
-    background-color: grey;
+    background-color: rgb(209, 207, 207);
     color: white;
     font-size: 16px;
     cursor: pointer;
@@ -8,7 +8,7 @@
 }
 
 .input-field {
-    position: absolute;
+    /* position: absolute; */
     bottom: 0;
     width: 100%;
     display: flex;
@@ -18,14 +18,14 @@
     width: 70%;
     height: 50px;
     border: 0;
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid rgb(209, 207, 207);
     font-size: 18px;
     padding-left: 2px
 }
 
 .emoji-mart {
     position: absolute;
-    bottom: 20px;
+    bottom: 50px;
     right: 10px;
 }
 
@@ -46,7 +46,7 @@ textarea.message-input {
     min-height: auto;
     overflow-y: hidden;
     resize: none;
-    border-left: 1px solid #ccc;
+    border-left: 1px solid rgb(209, 207, 207);
 }
 
 .message-input:focus {
@@ -63,6 +63,8 @@ textarea.message-input {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #534a3c;
+    border: 1px solid rgb(209, 207, 207);
 }
 
 .toggle-emoji svg {

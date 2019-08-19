@@ -21,6 +21,7 @@ export default class Inbox extends Component {
         axios.get(`${process.env.REACT_APP_API}/inbox`, 
                     {withCredentials:true})
         .then(response => {
+            console.log(response);
                 let chatRooms= response.data;
                 this.setState({chatRooms:chatRooms, currentUser: user})
     })
@@ -29,8 +30,10 @@ export default class Inbox extends Component {
     render() {
         return (
             <MainLayout {...this.props} className="Dashboard">
+                <div className="inboxPage">
                 <AllRooms rooms={this.state.chatRooms} currentUser={this.state.currentUser}/>
-                <Route path="/inbox/:id" render={(props)=><EachRoom rooms={this.state.chatRooms} userInSession={this.state.loggedInUser} {...props}/>}/>
+                <Route path="/inbox/:id" render={(props)=><EachRoom rooms={this.state.chatRooms} userInSession={this.state.currentUser} {...props}/>}/>
+                </div>
             </MainLayout>
         )
     }

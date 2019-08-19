@@ -109,7 +109,9 @@ export default class ChatApp extends Component {
                 instanceLocator: process.env.REACT_APP_chatkit_instance_locator,
                 userId: this.props.userInSession.username,
                 tokenProvider: new TokenProvider({
-                    url:`https://us1.pusherplatform.io/services/chatkit_token_provider/v1/95077b15-c43c-4d68-ae92-7a1f082f91c8/token`
+                    url: `${process.env.REACT_APP_API}/authenticate`
+
+                    // url:`https://us1.pusherplatform.io/services/chatkit_token_provider/v1/95077b15-c43c-4d68-ae92-7a1f082f91c8/token`
                 })
                 })
 

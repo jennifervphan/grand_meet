@@ -1,5 +1,5 @@
-import Chatkit from '@pusher/chatkit-client';
-import axios from 'axios';
+// import Chatkit from '@pusher/chatkit-client';
+// import axios from 'axios';
 
     function toggleEmojiPicker() {
       this.setState({

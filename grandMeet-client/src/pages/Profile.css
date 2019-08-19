@@ -4,7 +4,7 @@
     justify-content: flex-start;
     align-items: center;
     margin: 20px;
-    background-color: rgb(102, 101, 101);
+    background-color: #e9e8e6;
     /* opacity: 0.8; */
 }
 
@@ -39,8 +39,16 @@ p {
     background-color: red;
     font-family: "Font Awesome 5 Free";
     color: white;
-    text-align: center;
+    text-align: center !important;
     font-weight: 900;
-    font-size: 25px;
+    font-size: 28px;
     content: "\f304";
+}
+
+.registerBtn {
+    font-size: 20px;
+}
+
+.aboutSect {
+    font-size: 18px;
 }
