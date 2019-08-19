@@ -32,7 +32,6 @@ import React from 'react';
                     currentUser: currentUser
                 });
                 currentUser.getJoinableRooms().then((rooms) => {
-                    console.log(rooms)
                     let lobby = rooms.find(room => room.name === 'Lobby');
                     if (lobby) {
                         currentUser.joinRoom({ roomId: lobby.id });

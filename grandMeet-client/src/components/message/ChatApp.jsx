@@ -128,7 +128,6 @@ export default class ChatApp extends Component {
                             messageLimit: 100,
                             hooks: {
                                 onMessage: message => {
-                                    console.log(message)
                                     this.setState({
                                         messages: [...this.state.messages, message]
                                     })

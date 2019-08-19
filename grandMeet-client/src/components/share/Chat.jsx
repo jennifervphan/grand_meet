@@ -11,7 +11,7 @@ export default class Chat extends React.Component {
             messages: [],
             newMessage: ''
         };
-
+debugger
         props.user.subscribeToRoom({
             roomId: props.room.id,
             messageLimit: 100,
@@ -26,7 +26,8 @@ export default class Chat extends React.Component {
                         users: props.room.users
                     });
                 },
-                onNewMessage: (message) => {
+                onMessage: (message) => {
+                    debugger
                     console.log(message)
                     const messages = this.state.messages;
                     let opponent;
@@ -82,7 +83,7 @@ export default class Chat extends React.Component {
                     <Comment key={message.id}>
                         <Comment.Content>
                             <Comment.Author>{ message.user }</Comment.Author>
-                            <Comment.Text>{ message.message }</Comment.Text>
+                            <Comment.Text>{ message.text }</Comment.Text>
                             { acceptGame }
                         </Comment.Content>
                     </Comment>
