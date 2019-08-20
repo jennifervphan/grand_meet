@@ -39,7 +39,7 @@ const app = express();
 
 app.use(cors({
     credentials: true,
-    origin: ['http://localhost:3000'] // <== this will be the URL of our React app (it will be running on port 3000)
+    origin: [process.env.origin] // <== this will be the URL of our React app (it will be running on port 3000)
 }));
 
 // Middleware Setup

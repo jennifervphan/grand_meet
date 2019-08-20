@@ -1,0 +1,22 @@
+{
+    "name": "project3",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "install": "cd grandMeet-server && npm install",
+        "start": "cd grandMeet-server && npm start",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jennifervphan/grandMeet.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/jennifervphan/grandMeet/issues"
+    },
+    "homepage": "https://github.com/jennifervphan/grandMeet#readme"
+}

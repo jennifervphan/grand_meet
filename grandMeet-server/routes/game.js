@@ -41,6 +41,7 @@ router.post('/games', (req, res) => {
         roleName: 'Player',
         roomId: room
     });
+
     chatkit.assignRoomRoleToUser({
         userId: black,
         roleName: 'Player',
