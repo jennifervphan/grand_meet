@@ -23,7 +23,6 @@ const passport = require('passport');
 
 require('./configs/passport');
 
-console.log(`mongoose db ${process.env.MONGODB_URI}`)
 mongoose
     .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
     .then(x => {
