@@ -74,7 +74,7 @@ authRoutes.post('/signup', uploadCloud.single('picture'), (req, res, next) => {
                         console.log(err)
                     })
                 let { username, _id, profilePicUrl, about, longitude, latitude } = aNewUser;
-                res.status(200).send({ username, _id, profilePicUrl, about, longitude, latitude });
+                res.status(200).json({ username, _id, profilePicUrl, about, longitude, latitude });
             });
         });
     });
