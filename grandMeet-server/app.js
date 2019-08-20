@@ -105,4 +105,10 @@ app.use('/api', require('./routes/inbox'));
 app.use('/api', require('./routes/newChat'));
 app.use('/api', require('./routes/share'));
 app.use('/api', require('./routes/game'));
+
+app.use((req, res, next) => {
+    // If no routes match, send them the React HTML.
+    res.sendFile(__dirname + "/public/index.html");
+});
+
 module.exports = app;

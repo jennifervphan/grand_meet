@@ -3,7 +3,7 @@ import axios from 'axios';
 class AuthService {
   constructor() {
     let service = axios.create({
-      baseURL: 'http://localhost:5000/api',
+      baseURL: `${process.env.REACT_APP_API}`,
       withCredentials: true
     });
     this.service = service;
@@ -12,7 +12,7 @@ class AuthService {
   signup = (form) => {
     return axios({
       method:"POST",
-      baseURL: `http://localhost:5000/api/signup`,
+      baseURL:`${process.env.REACT_APP_API}/signup`,
       withCredentials: true,
       data:form
     })

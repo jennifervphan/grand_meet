@@ -114,7 +114,7 @@ export default class GameBoard extends React.Component {
             } else {
                 axios.request({
                     method: 'POST',
-                    url: 'http://localhost:5000/api/games/' + this.props.room,
+                    url: `${process.env.REACT_APP_API}/games/` + this.props.room,
                     data: {
                         player: this.props.user.id,
                         fromRow: this.state.activeCell.y,
@@ -139,7 +139,7 @@ export default class GameBoard extends React.Component {
 
     _refreshGame() {
         axios.request({
-            url: 'http://localhost:5000/api/games/' + this.props.room
+            url: `${process.env.REACT_APP_API}/games/` + this.props.room
         })
         .then((response) => {
             this.setState({

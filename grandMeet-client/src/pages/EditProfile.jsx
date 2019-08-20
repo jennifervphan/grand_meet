@@ -16,7 +16,7 @@ export default class EditProfile extends Component {
         form.append('user',this.props.userInSession._id)
         axios({
             method:"POST",
-            baseURL: `http://localhost:5000/api/edit`,
+            baseURL: `${process.env.REACT_APP_API}/edit`,
             withCredentials: true,
             data:form
           })

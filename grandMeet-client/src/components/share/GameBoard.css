@@ -1,7 +1,7 @@
 .gamePage {
     margin: 20px;
-    height: 85vh;
-    max-height: 85vh;
+    height: 76vh;
+    max-height: 76vh;
 }
 
 .rowFlex {
@@ -25,6 +25,7 @@
 
 .chatArea {
     width: 80%;
+    height: 100%;
 }
 
 .columnFlex {
@@ -36,15 +37,15 @@
 .allMessages {
     padding: 0 20px;
     width: 80%;
-    height: 82vh;
-    max-height: 82vh;
+    height: 76vh;
+    max-height: 76vh;
     overflow-y: scroll;
 }
 
 .availableUsers {
     width: 20%;
-    height: 82vh;
-    max-height: 82vh;
+    height: 76vh;
+    max-height: 76vh;
     overflow-y: scroll;
 }
 
@@ -58,13 +59,11 @@
 }
 
 .ui.form {
-    bottom: 0 !important;
     width: 100% !important;
 }
 
 .typeText {
     width: 100% !important;
-    bottom: 0 !important;
 }
 
 .loginToCommon {

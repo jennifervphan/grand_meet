@@ -63,8 +63,6 @@ export default class EachRoom extends Component {
         }
     }
 
-
-
     componentDidMount (){
         debugger
         const {params}= this.props.match;

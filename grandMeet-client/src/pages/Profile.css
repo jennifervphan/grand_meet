@@ -12,8 +12,8 @@
 p {
     font-family: 'Rubik', sans-serif;
     color: black !important;
-    margin: 0;
-    padding: 0;
+    /* margin: 0;
+    padding: 0; */
 }
 
 .profilePic {
@@ -41,8 +41,9 @@ p {
     color: white;
     text-align: center !important;
     font-weight: 900;
-    font-size: 28px;
+    font-size: 25px;
     content: "\f304";
+    /*  */
 }
 
 .registerBtn {
@@ -51,4 +52,5 @@ p {
 
 .aboutSect {
     font-size: 18px;
+    width: 500px;
 }

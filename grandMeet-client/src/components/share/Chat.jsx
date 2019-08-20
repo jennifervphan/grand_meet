@@ -11,10 +11,10 @@ export default class Chat extends React.Component {
             messages: [],
             newMessage: ''
         };
-debugger
+
         props.user.subscribeToRoom({
             roomId: props.room.id,
-            messageLimit: 100,
+            messageLimit: 50,
             hooks: {
                 onUserJoined: (user) => {
                     this.setState({
@@ -27,8 +27,6 @@ debugger
                     });
                 },
                 onMessage: (message) => {
-                    debugger
-                    console.log(message)
                     const messages = this.state.messages;
                     let opponent;
                     if (message.attachment && message.attachment.link && message.attachment.link.startsWith('urn:player:')) {
@@ -50,7 +48,6 @@ debugger
             }
         })
         .then(currentRoom=>{
-            console.log(currentRoom)
             this.setState({user: currentRoom.userIds})
         })
     }
@@ -110,9 +107,9 @@ debugger
                     </div>
                 </div>
                 <div>
-                        <Form onSubmit={this._handleSubmit.bind(this)}>
-                            <input className="typeText" type="text" placeholder='New Message...' value={this.state.newMessage} onChange={this._handleNewMessageChange.bind(this)} />
-                        </Form>
+                    <Form onSubmit={this._handleSubmit.bind(this)}>
+                        <input className="typeText" type="text" placeholder='New Message...' value={this.state.newMessage} onChange={this._handleNewMessageChange.bind(this)} />
+                    </Form>
                 </div>
             </>
         );

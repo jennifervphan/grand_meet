@@ -10,7 +10,13 @@ class CommonRoom extends React.Component {
       super(props);
       this.state = {};
   }
-  
+
+   enterGame(username) {
+    this.setState({
+      username: username
+    });
+  }
+
   render() {
     let contents;
     if (this.state.username) {
@@ -19,18 +25,11 @@ class CommonRoom extends React.Component {
       contents = <Login login={this.enterGame.bind(this)} />
     }
     return (
-      <MainLayout {...this.props}>
+      <>
         { contents }
-      </MainLayout>
+      </>
     );
   }
-
-  enterGame(username) {
-    this.setState({
-      username: username
-    });
-  }
-
 }
 
 export default CommonRoom;
