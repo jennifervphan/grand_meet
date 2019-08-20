@@ -11,8 +11,10 @@ export default class Inbox extends Component {
         super(props);
         this.state={
             chatRooms:[],
-            currentUser:{}
+            currentUser:{}, 
+            currentRoom:{}
         };
+        this.setCurrentRoom= this.setCurrentRoom.bind(this);
     }
 
     componentDidMount (){
@@ -27,12 +29,18 @@ export default class Inbox extends Component {
     })
     }
 
+    setCurrentRoom= (room)=>{
+        this.setState({
+            currentRoom: room
+        })
+    }
+
     render() {
         return (
             <MainLayout {...this.props} className="Dashboard">
                 <div className="inboxPage">
-                <AllRooms rooms={this.state.chatRooms} currentUser={this.state.currentUser}/>
-                <Route path="/inbox/:id" render={(props)=><EachRoom rooms={this.state.chatRooms} userInSession={this.state.currentUser} {...props}/>}/>
+                <AllRooms rooms={this.state.chatRooms} currentUser={this.state.currentUser} currentRoom={this.state.currentRoom}/>
+                <Route path="/inbox/:id" render={(props)=><EachRoom rooms={this.state.chatRooms} userInSession={this.state.currentUser} setRoom={this.setCurrentRoom} {...props}/>}/>
                 </div>
             </MainLayout>
         )

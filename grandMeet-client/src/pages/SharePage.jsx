@@ -1,35 +1,17 @@
-import React from 'react';
-import 'semantic-ui-css/semantic.min.css';
-import { Container } from 'semantic-ui-react';
-import Login from '../components/share/Login';
-import Games from '../components/share/Games';
+import React, { Component } from 'react';
+import {Link, Route} from 'react-router-dom';
+import CommonRoom from "./CommonRoom";
+import MainLayout from '../components/layout/MainLayout';
 
-class SharePage extends React.Component {
-  constructor(props){
-      super(props);
-      this.state = {};
-  }
-  
-  render() {
-    let contents;
-    if (this.state.username) {
-      contents = <Games username={this.state.username} />
-    } else {
-      contents = <Login login={this.enterGame.bind(this)} />
+export default class SharePage extends Component {
+    render() {
+        return (
+            <MainLayout {...this.props}>
+                <div style={{display: "flex"}}>
+                <Link to="/commonRoom"><h4>Common Room</h4></Link>
+                <Link to="/sharingThings"><h4>Sharing Corner</h4></Link>
+                </div>
+            </MainLayout>
+        )
     }
-    return (
-      <Container>
-        { contents }
-      </Container>
-    );
-  }
-
-  enterGame(username) {
-    this.setState({
-      username: username
-    });
-  }
-
 }
-
-export default SharePage;

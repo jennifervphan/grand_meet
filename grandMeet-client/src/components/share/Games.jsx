@@ -20,7 +20,7 @@ import React from 'react';
                 instanceLocator: process.env.REACT_APP_chatkit_instance_locator,
                 userId: this.props.username,
                 tokenProvider: new TokenProvider({
-                    url: `${process.env.REACT_APP_API}/share`
+                    url: `${process.env.REACT_APP_API}/commonRoom`
                 })
             });
 
@@ -120,20 +120,18 @@ import React from 'react';
                 }
             }
             return (
-                <Segment>
-                    <Grid>
-                        <Grid.Column width={4}>
+                    <div className="rowFlex gamePage">
+                        <div className="differentRooms">
                             <Rooms joined={this.state.joined}
                                    joinable={this.state.joinable}
                                    activeRoom={this.state.activeRoom}
                                    enterRoom={this._enterRoom.bind(this)}
                                    leaveRoom={this._leaveRoom.bind(this)} />
-                        </Grid.Column>
-                        <Grid.Column width={12}>
+                        </div>
+                        <div className="chatArea">
                             { chat }
-                        </Grid.Column>
-                    </Grid>
-                </Segment>
+                        </div>
+                    </div>
             );
         }
     }

@@ -6,18 +6,15 @@ import React from 'react';
         };
         render() {
             return (
-                <Segment>
-                    <Form onSubmit={this.handleFormSubmit.bind(this)}>
-                        <Form.Field>
-                            <label>Username</label>
-                            <input placeholder='Username' 
+                <div class="loginToCommon">
+                    <form className="loginToCommonForm" onSubmit={this.handleFormSubmit.bind(this)}>
+                            <label>Welcome to the Common Room!</label>
+                            <input placeholder='Enter your username' 
                                    value={this.state.username} 
-                                   autoFocus
                                    onChange={this.handleUsernameChange.bind(this)} />
-                        </Form.Field>
-                        <Button type='submit'>Log in</Button>
-                    </Form>  
-                </Segment>
+                        <button type='submit'>Enter</button>
+                    </form>  
+                </div>
             );
         }
         handleUsernameChange(e) {

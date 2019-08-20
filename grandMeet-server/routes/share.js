@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const chatkit = require('./chatkit');
 
-router.post('/share', (req, res) => {
+router.post('/commonRoom', (req, res) => {
     const userId = req.query.user_id;
 
     chatkit.createUser({

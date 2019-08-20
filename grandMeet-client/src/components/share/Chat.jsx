@@ -59,14 +59,14 @@ debugger
         const users = this.state.users
             .filter((user) => user.id !== this.props.user.id)
             .map((user) => (
-                <List.Item key={user.id}>
-                    <List.Content floated='right'>
-                        <a onClick={() => this._challengePlayer(user)}>Challenge</a>
-                    </List.Content>
-                    <List.Content>
+                <li style={{listStyle:"none"}} key={user.id}>
+                    <b style={{margin: "0", padding:"0"}}>
                         { user.name }
-                    </List.Content>
-                </List.Item>
+                    </b>
+                    <p style={{floated:'right'}}>
+                        <a onClick={() => this._challengePlayer(user)}>Challenge</a>
+                    </p>
+                </li>
             ));
 
         const messages = this.state.messages
@@ -74,56 +74,47 @@ debugger
                 let acceptGame;
                 if (message.opponent) {
                     acceptGame = (
-                        <Comment.Actions>
-                            <Comment.Action onClick={() => this._acceptChallenge(message.user)}>Accept Challenge</Comment.Action>
-                        </Comment.Actions>
+                            <a onClick={() => this._acceptChallenge(message.user)}>Accept Challenge</a>
                     );
                 }
                 return (
-                    <Comment key={message.id}>
-                        <Comment.Content>
-                            <Comment.Author>{ message.user }</Comment.Author>
-                            <Comment.Text>{ message.text }</Comment.Text>
+                    // <div key={message.id}>
+                        <div className="columnFlex">
+                            <h4 className="flexpart">{ message.user}</h4>
+                            <p className="flexpart">{ message.text }</p>
                             { acceptGame }
-                        </Comment.Content>
-                    </Comment>
+                        </div>
+                    // </div>
                 );
             });
 
         return (
-            <Grid>
-                <Grid.Row>
-                    <Grid.Column width={12}>
+            <>
+                <div className="rowFlex">
+                    <div className="allMessages">
                         { this.props.game && <GameBoard room={this.props.game} user={this.props.user} ref={(child) => { this._gameBoard = child; }}/> }
-                        <Comment.Group style={{height: '20em', overflow: 'auto'}}>
+                        <div className="ColumnFlex" >
                             { messages }
-                        </Comment.Group>
+                        </div>
                         <div style={{ float:"left", clear: "both" }} ref={(el) => { this.messagesEnd = el; }} />
-                    </Grid.Column>
-                    <Grid.Column width={4}>
-                        <List style={{maxHeight: '20em', overflow: 'auto'}}>
-                            <List.Item>
+                    </div>
+                    <div className="availableUsers">
+                        <ul>
+                            <li style={{listStyle:"none"}}>
                                 <b>
-                                    { this.props.user.name }
+                                   You: { this.props.user.name }
                                 </b>
-                            </List.Item>
+                            </li>
                             { users }
-                        </List>
-                    </Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                    <Grid.Column width={16}>
+                        </ul>
+                    </div>
+                </div>
+                <div>
                         <Form onSubmit={this._handleSubmit.bind(this)}>
-                            <Input action='Post'
-                                   placeholder='New Message...'
-                                   value={this.state.newMessage}
-                                   fluid
-                                   autoFocus
-                                   onChange={this._handleNewMessageChange.bind(this)} />
+                            <input className="typeText" type="text" placeholder='New Message...' value={this.state.newMessage} onChange={this._handleNewMessageChange.bind(this)} />
                         </Form>
-                    </Grid.Column>
-                </Grid.Row>
-            </Grid>
+                </div>
+            </>
         );
     }
 

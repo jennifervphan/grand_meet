@@ -8,7 +8,8 @@ export default class AllRooms extends Component {
         super(props);
         this.state={
             user: JSON.parse(localStorage.getItem('user')),
-            otherUsers:{}
+            otherUsers:{},
+            // currentRoom:this.props.currentRoom
         }
     }
 
@@ -23,14 +24,17 @@ export default class AllRooms extends Component {
             })
     }
 
+
     render() {
         const {rooms} =this.props
         let eachRoom= rooms.map((room, index)=>{
             let roomName= room["member_user_ids"].filter(id => id !== this.state.user.username)[0]
             let partner= this.state.otherUsers.filter(user => user.username=== roomName)[0]
+            const isRoomActive = room.id === this.props.currentRoom.id ? 'active' : '';   
+            debugger
             return(
                 <Link className="eachRoom" to={`/inbox/${room.id}`} key={index}>
-                <li >
+                <li className={isRoomActive} key={room.id}>
                     <div className="inboxList">
                     <div className="eachMesDiv" style={{backgroundImage: `url(${partner.profilePicUrl})`}}>
                     </div>

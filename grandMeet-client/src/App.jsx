@@ -11,6 +11,7 @@ import Nearby from './pages/Nearby.jsx';
 import NearbyUser from './pages/NearbyUser.jsx';
 import Inbox from './pages/Inbox';
 import SharePage from './pages/SharePage';
+import CommonRoom from './pages/CommonRoom';
 import './App.css';
 import ChatPage from './pages/ChatPage';
 
@@ -54,7 +55,9 @@ class App extends Component {
           <Route exact path='/login' render = {(routeProps) => <Login getUser={this.getTheUser} {...routeProps} />} />
           <Route path='/inbox' render = {(routeProps) => <Inbox userInSession={this.state.loggedInUser} getUser={this.getTheUser} {...routeProps}/>} />
           <Route exact path="/chat/:id" render= {(routeProps)=> <ChatPage userInSession={this.state.loggedInUser} getUser={this.getTheUser} {...routeProps}/>} />
-          <Route exact path='/share' render = {(routeProps) => <SharePage userInSession={this.state.loggedInUser} getUser={this.getTheUser} {...routeProps}/>} />
+          <Route exact path="/share" render= {(routeProps)=> <SharePage userInSession={this.state.loggedInUser} getUser={this.getTheUser} {...routeProps}/>}/>
+          <Route path='/commonRoom' render = {(routeProps) => <CommonRoom userInSession={this.state.loggedInUser} getUser={this.getTheUser} {...routeProps}/>} />
+
         </div>
       )
   }

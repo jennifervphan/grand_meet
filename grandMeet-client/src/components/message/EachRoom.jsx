@@ -9,6 +9,7 @@ export default class EachRoom extends Component {
         super(props)
         this.state={
             currentUser:null,
+            userInSession: JSON.parse(localStorage.getItem('user')),
             currentRoom: {users:[]},
             messages:[],
             users:[]
@@ -22,7 +23,7 @@ export default class EachRoom extends Component {
             let roomId=params.id
             const chatManager = new ChatManager({
                 instanceLocator: process.env.REACT_APP_chatkit_instance_locator,
-                userId: this.props.userInSession.username,
+                userId: this.state.userInSession.username,
                 tokenProvider: new TokenProvider({
                     url: `${process.env.REACT_APP_API}/authenticate`
                 })
@@ -39,7 +40,7 @@ export default class EachRoom extends Component {
                         })
                         currentUser.subscribeToRoom({
                             roomId: `${roomId}`,
-                            messageLimit: 100,
+                            messageLimit: 50,
                             hooks: {
                                 onMessage: message => {
                                     this.setState({
@@ -54,6 +55,8 @@ export default class EachRoom extends Component {
                                 currentRoom,
                                 users: currentRoom.userIds
                             })
+                            this.props.setRoom(currentRoom)
+
                             })
                             .catch(error => console.log(error))
                         })
@@ -68,7 +71,7 @@ export default class EachRoom extends Component {
         let roomId=params.id
         const chatManager = new ChatManager({
             instanceLocator: process.env.REACT_APP_chatkit_instance_locator,
-            userId: this.props.userInSession.username,
+            userId: this.state.userInSession.username,
             tokenProvider: new TokenProvider({
                 url: `${process.env.REACT_APP_API}/authenticate`
             })
@@ -85,7 +88,7 @@ export default class EachRoom extends Component {
                     })
                     currentUser.subscribeToRoom({
                         roomId: `${roomId}`,
-                        messageLimit: 100,
+                        messageLimit: 50,
                         hooks: {
                             onMessage: message => {
                                 this.setState({
@@ -99,6 +102,7 @@ export default class EachRoom extends Component {
                             currentRoom,
                             users: currentRoom.userIds
                         })
+                        this.props.setRoom(currentRoom)
                         })
                         .catch(error => console.log(error))
     })}
@@ -115,7 +119,7 @@ export default class EachRoom extends Component {
         debugger
         return (
             <div className="eachRoom"> 
-                <MessageList messages={this.state.messages} {...this.props}/>           
+                <MessageList messages={this.state.messages} userInSession={this.state.userInSession}/>           
                 <Input className="input-field-one" onSubmit={this.addMessage} />            
             </div>
         )
