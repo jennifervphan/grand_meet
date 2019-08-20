@@ -6,7 +6,7 @@
     height: 78vh;
     max-height: 78vh;
     overflow-y: scroll;
-    background-color: #e9e8e6;
+    /* background-color: #e9e8e6; */
     display: flex;
     flex-direction: column;
 }

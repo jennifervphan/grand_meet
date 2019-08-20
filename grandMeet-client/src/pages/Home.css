@@ -4,6 +4,7 @@
     margin: 0;
     opacity: 0.7;
     background: url('/img/raymond-tan-yiY6CsbFXIE-unsplash.jpg') no-repeat center center fixed;
+    background-color: none !important;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
